@@ -1,3 +1,0 @@
-please commit the android project in here
-
-(delete this file if not needed)
