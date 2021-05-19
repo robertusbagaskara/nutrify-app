@@ -9,17 +9,19 @@
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nutrify">
-        <activity android:name=".ui.auth.register.RegisterActivity" />
-        <activity android:name=".ui.auth.login.LoginActivity" />
-        <activity
-            android:name=".ui.MainActivity"
-            android:label="@string/app_name">
+        <activity android:name=".ui.splashscreen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.auth.register.RegisterActivity" />
+        <activity android:name=".ui.auth.login.LoginActivity" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:label="@string/app_name" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

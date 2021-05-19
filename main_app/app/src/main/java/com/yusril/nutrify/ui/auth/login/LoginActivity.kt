@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.yusril.nutrify.R
 import com.yusril.nutrify.databinding.ActivityLoginBinding
+import com.yusril.nutrify.ui.MainActivity
 import com.yusril.nutrify.ui.auth.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -20,6 +21,11 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnSignUp.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnSignIn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }

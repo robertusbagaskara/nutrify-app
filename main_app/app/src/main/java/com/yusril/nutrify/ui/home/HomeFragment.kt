@@ -26,9 +26,5 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnLogin.setOnClickListener {
-            val i = Intent(context, LoginActivity::class.java)
-            startActivity(i)
-        }
     }
 }

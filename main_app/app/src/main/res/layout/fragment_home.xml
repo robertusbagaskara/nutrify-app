@@ -95,12 +95,4 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hero_section" />
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:fontFamily="@font/poppins"
-        android:text="Login"
-        app:layout_constraintTop_toBottomOf="@id/today_statistic" />
 </androidx.constraintlayout.widget.ConstraintLayout>
