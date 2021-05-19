@@ -1,4 +1,4 @@
-package com.yusril.nutrify.home
+package com.yusril.nutrify.ui.statistic
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.yusril.nutrify.R
 
-class HomeFragment : Fragment() {
+class StatisticsFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var statisticsViewModel: StatisticsViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        statisticsViewModel =
+                ViewModelProvider(this).get(StatisticsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_statistics, container, false)
+        val textView: TextView = root.findViewById(R.id.text_dashboard)
+        statisticsViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

@@ -1,4 +1,4 @@
-package com.yusril.nutrify.profile
+package com.yusril.nutrify.ui.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

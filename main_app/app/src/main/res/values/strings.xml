@@ -7,6 +7,25 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_profile">Profile</string>
     <string name="title_scan">Scan</string>
+
+    <string name="username">Hello Bambang,</string>
+    <string name="calories_today">Your calories today</string>
+    <string name="calories_kkal">kkal</string>
+    <string name="calories_total">1965</string>
+    <string name="today_statistic">Today statistic</string>
+    <string name="welcome">Welcome</string>
+    <string name="sign_in_to_continue">Sign in to continue</string>
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="or">or</string>
+    <string name="sign_in_with_gmail">Sign in with gmail account</string>
+    <string name="sign_up">Sign up</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="sign_up_with_gmail">Sign up with gmail account</string>
+    <string name="already_have_an_account">Already have an account? Sign in</string>
+
     <string name="birth_date">birth date</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="weight">%d kg</string>
