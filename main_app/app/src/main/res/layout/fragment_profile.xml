@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment">
+    tools:context=".profile.ProfileFragment">
 
     <ImageView
         android:id="@+id/photoProfile"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginTop="36dp"
-        android:src="@drawable/user_photo_null"
+        android:src="@drawable/user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,7 +20,7 @@
         android:id="@+id/tv_gender"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@drawable/shape_eclipse_green"
+        android:background="@drawable/shape"
         android:src="@drawable/ic_male"
         app:layout_constraintBottom_toBottomOf="@+id/photoProfile"
         app:layout_constraintEnd_toEndOf="@+id/photoProfile" />

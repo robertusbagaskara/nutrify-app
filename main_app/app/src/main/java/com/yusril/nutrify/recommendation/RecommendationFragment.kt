@@ -1,4 +1,4 @@
-package com.yusril.nutrify.ui.recommendation
+package com.yusril.nutrify.recommendation
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.yusril.nutrify.ui.statistic
+package com.yusril.nutrify.statistic
 
 import android.os.Bundle
 import android.view.LayoutInflater

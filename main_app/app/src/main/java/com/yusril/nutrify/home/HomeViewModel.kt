@@ -1,4 +1,4 @@
-package com.yusril.nutrify.ui.home
+package com.yusril.nutrify.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
