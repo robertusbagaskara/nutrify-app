@@ -7,4 +7,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_profile">Profile</string>
     <string name="title_scan">Scan</string>
+    <string name="birth_date">birth date</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="weight">%d kg</string>
+    <string name="height">%d cm</string>
+    <string name="edit_language">Language</string>
 </resources>
