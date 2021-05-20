@@ -31,4 +31,5 @@
     <string name="weight">%d kg</string>
     <string name="height">%d cm</string>
     <string name="edit_language">Language</string>
+    <string name="health_tips">“Reduce intake of harmful fats”</string>
 </resources>
