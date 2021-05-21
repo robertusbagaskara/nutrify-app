@@ -20,7 +20,9 @@
         <activity android:name=".ui.auth.login.LoginActivity" />
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name" >
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

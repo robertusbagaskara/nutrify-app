@@ -27,12 +27,13 @@
         app:layout_constraintEnd_toEndOf="@+id/photoProfile" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="Name"
+        android:textColor="#2F2F2F"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +50,7 @@
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
     <View
         android:id="@+id/view2"
@@ -69,6 +70,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/weight"
+        android:textColor="#2F2F2F"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toStartOf="@+id/view2"
@@ -83,6 +85,7 @@
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/height"
+        android:textColor="#2F2F2F"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,6 +104,7 @@
         android:drawablePadding="10dp"
         android:fontFamily="@font/poppins"
         android:text="@string/edit_profile"
+        android:textColor="#2F2F2F"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -129,6 +133,7 @@
         android:drawablePadding="10dp"
         android:fontFamily="@font/poppins"
         android:text="@string/edit_language"
+        android:textColor="#2F2F2F"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -159,6 +164,7 @@
         android:drawablePadding="10dp"
         android:fontFamily="@font/poppins"
         android:text="Sign Out"
+        android:textColor="#2F2F2F"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

@@ -8,6 +8,10 @@ import com.yusril.nutrify.R
 import com.yusril.nutrify.ui.auth.login.LoginActivity
 
 class SplashScreenActivity : AppCompatActivity() {
+    companion object{
+        private var delayMills = 2000
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
@@ -17,6 +21,6 @@ class SplashScreenActivity : AppCompatActivity() {
         Handler(mainLooper).postDelayed({
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
-        }, 2000)
+        }, delayMills.toLong())
     }
 }

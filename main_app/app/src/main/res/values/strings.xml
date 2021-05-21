@@ -32,4 +32,6 @@
     <string name="height">%d cm</string>
     <string name="edit_language">Language</string>
     <string name="health_tips">“Reduce intake of harmful fats”</string>
+    <string name="rec_food_name">Fresh Tomato</string>
+    <string name="rec_food_type">Vegetable</string>
 </resources>
