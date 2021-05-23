@@ -10,4 +10,5 @@
     <color name="bottom_line">#EEEEEE</color>
 
     <color name="bg_card_view">#1A00786A</color>
+    <color name="hint_txt">#7D8797</color>
 </resources>

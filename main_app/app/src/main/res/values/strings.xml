@@ -26,7 +26,7 @@
     <string name="sign_up_with_gmail">Sign up with gmail account</string>
     <string name="already_have_an_account">Already have an account? Sign in</string>
 
-    <string name="birth_date">birth date</string>
+    <string name="birth_date">Birth Date</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="weight">%d kg</string>
     <string name="height">%d cm</string>
@@ -34,4 +34,17 @@
     <string name="health_tips">“Reduce intake of harmful fats”</string>
     <string name="rec_food_name">Fresh Tomato</string>
     <string name="rec_food_type">Vegetable</string>
+
+    <string name="btn_save">Save</string>
+    <string name="input_full_name">Full Name</string>
+    <string name="input_username">Username</string>
+    <string name="input_height">Height</string>
+    <string name="input_weight">Weight</string>
+    <string name="input_new_password">New Password</string>
+    <string name="input_birth_date">YYYY-MM-DD</string>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>
