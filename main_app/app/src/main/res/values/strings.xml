@@ -34,4 +34,8 @@
     <string name="health_tips">“Reduce intake of harmful fats”</string>
     <string name="rec_food_name">Fresh Tomato</string>
     <string name="rec_food_type">Vegetable</string>
+    <string name="calories_per_day">Calories per day</string>
+    <string name="consuming_per_month">Most kind of food consuming per month</string>
+    <string name="month_year">MEI 2021</string>
+    <string name="week1">week 1</string>
 </resources>

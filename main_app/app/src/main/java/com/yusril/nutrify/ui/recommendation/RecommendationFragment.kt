@@ -28,7 +28,7 @@ class RecommendationFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         recommendationViewModel = ViewModelProvider(this).get(RecommendationViewModel::class.java)
-        val textView: TextView = binding.root.findViewById(R.id.text_notifications)
+        val textView: TextView = binding.root.findViewById(R.id.text_recommendation)
         recommendationViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
