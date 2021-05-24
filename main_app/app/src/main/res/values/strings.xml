@@ -34,6 +34,24 @@
     <string name="health_tips">“Reduce intake of harmful fats”</string>
     <string name="rec_food_name">Fresh Tomato</string>
     <string name="rec_food_type">Vegetable</string>
+
+    <string name="btn_save">Save</string>
+    <string name="input_full_name">Full Name</string>
+    <string name="input_username">Username</string>
+    <string name="input_height">Height</string>
+    <string name="input_weight">Weight</string>
+    <string name="input_new_password">New Password</string>
+    <string name="input_birth_date">YYYY-MM-DD</string>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Bahasa Indonesia</item>
+    </string-array>
     <string name="calories_per_day">Calories per day</string>
     <string name="consuming_per_month">Most kind of food consuming per month</string>
     <string name="month_year">MEI 2021</string>
