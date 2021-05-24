@@ -9,9 +9,7 @@
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nutrify">
-        <activity android:name=".ui.profile.edtlanguage.EditLanguageActivity">
-
-        </activity>
+        <activity android:name=".ui.profile.edtlanguage.EditLanguageActivity"></activity>
         <activity android:name=".ui.profile.edtprofile.EditProfileActivity" />
         <activity android:name=".ui.splashscreen.SplashScreenActivity">
             <intent-filter>
