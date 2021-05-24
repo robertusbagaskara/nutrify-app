@@ -23,22 +23,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_input_birth" />
 
-        <Spinner
-            android:id="@+id/input_gender"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewGender" />
-
         <TextView
             android:id="@+id/textViewGender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="18dp"
             android:fontFamily="@font/poppins"
             android:text="Gender"
             android:textSize="14sp"
@@ -224,7 +214,28 @@
             android:text="@string/birth_date"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_gender" />
+            app:layout_constraintTop_toBottomOf="@+id/box_input_gender" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/box_input_gender"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:boxBackgroundColor="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGender">
+
+            <AutoCompleteTextView
+                android:id="@+id/input_gender"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:inputType="none"
+                android:text="Gender" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

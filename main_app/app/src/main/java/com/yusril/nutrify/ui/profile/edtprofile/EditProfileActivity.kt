@@ -24,7 +24,9 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener, DatePicke
         binding.btnInputBirth.setOnClickListener(this)
 
         var genderList: Array<String> = resources.getStringArray(R.array.gender)
-        binding.inputGender.adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1, genderList)
+        val adapter = ArrayAdapter(this,R.layout.drop_down_item, genderList)
+
+        binding.inputGender.setAdapter(adapter)
 
     }
 
