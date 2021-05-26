@@ -19,7 +19,7 @@ class RecommendationFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentRecommendationBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -29,7 +29,7 @@ class RecommendationFragment : Fragment() {
 
         recommendationViewModel = ViewModelProvider(this).get(RecommendationViewModel::class.java)
         val textView: TextView = binding.root.findViewById(R.id.text_recommendation)
-        recommendationViewModel.text.observe(viewLifecycleOwner, Observer {
+        recommendationViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
     }

@@ -25,7 +25,7 @@ class StatisticsFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentStatisticsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -45,6 +45,7 @@ class StatisticsFragment : Fragment(), View.OnClickListener {
 
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun monthYearPicker() {
         val calendar = Calendar.getInstance()
         val monthSelected = calendar.get(Calendar.MONTH)

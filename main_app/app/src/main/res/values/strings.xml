@@ -57,4 +57,9 @@
     <string name="consuming_per_month">Most kind of food consuming per month</string>
     <string name="month_year">MEI 2021</string>
     <string name="week1">week 1</string>
+    <string name="english">English</string>
+    <string name="textview">textView</string>
+    <string name="name">Name</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="recommendation_for_you">Recommendation for you</string>
 </resources>

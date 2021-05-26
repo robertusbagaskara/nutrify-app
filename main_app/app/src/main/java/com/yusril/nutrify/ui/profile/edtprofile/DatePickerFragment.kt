@@ -13,9 +13,7 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context != null){
-            mListener = context as DialogDateListener?
-        }
+        mListener = context as DialogDateListener?
     }
 
     override fun onDetach() {

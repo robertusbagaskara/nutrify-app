@@ -11,7 +11,7 @@ class EditLanguageActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        var languageList: Array<String> = resources.getStringArray(R.array.languages)
+        val languageList: Array<String> = resources.getStringArray(R.array.languages)
         val adapter = ArrayAdapter(this,R.layout.drop_down_item, languageList)
         binding.inputLanguage.setAdapter(adapter)
     }

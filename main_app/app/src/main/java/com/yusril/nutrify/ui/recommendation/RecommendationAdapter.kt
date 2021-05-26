@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yusril.nutrify.databinding.RowItemRecommendationBinding
 
 class RecommendationAdapter: RecyclerView.Adapter<RecommendationAdapter.ViewHolder>() {
-    class ViewHolder(private val binding: RowItemRecommendationBinding): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(binding: RowItemRecommendationBinding): RecyclerView.ViewHolder(binding.root) {
         //
     }
 

@@ -3,7 +3,6 @@ package com.yusril.nutrify.ui.auth.register
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.yusril.nutrify.R
 import com.yusril.nutrify.databinding.ActivityRegisterBinding
 import com.yusril.nutrify.ui.auth.login.LoginActivity
 

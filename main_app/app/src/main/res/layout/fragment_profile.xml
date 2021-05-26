@@ -15,7 +15,8 @@
         android:src="@drawable/user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/app_name" />
 
     <ImageView
         android:id="@+id/tv_gender"
@@ -24,7 +25,8 @@
         android:background="@drawable/shape"
         android:src="@drawable/ic_male"
         app:layout_constraintBottom_toBottomOf="@+id/photoProfile"
-        app:layout_constraintEnd_toEndOf="@+id/photoProfile" />
+        app:layout_constraintEnd_toEndOf="@+id/photoProfile"
+        android:contentDescription="@string/app_name" />
 
     <TextView
         android:id="@+id/tv_name"
@@ -32,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Name"
+        android:text="@string/name"
         android:textColor="#2F2F2F"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -99,8 +101,6 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="32dp"
-        android:drawableLeft="@drawable/ic_edit_profile"
-        android:drawableRight="@drawable/ic_arrow_forward"
         android:drawablePadding="10dp"
         android:fontFamily="@font/poppins"
         android:text="@string/edit_profile"
@@ -109,7 +109,9 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:drawableStartCompat="@drawable/ic_edit_profile"
+        app:drawableRightCompat="@drawable/ic_arrow_forward" />
 
     <View
         android:id="@+id/view"
@@ -128,8 +130,6 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:drawableLeft="@drawable/ic_translate"
-        android:drawableRight="@drawable/ic_arrow_forward"
         android:drawablePadding="10dp"
         android:fontFamily="@font/poppins"
         android:text="@string/edit_language"
@@ -139,7 +139,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:drawableLeftCompat="@drawable/ic_translate"
+        app:drawableRightCompat="@drawable/ic_arrow_forward" />
 
     <View
         android:id="@+id/view4"
@@ -159,18 +161,18 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:drawableLeft="@drawable/ic_sign_out"
-        android:drawableRight="@drawable/ic_arrow_forward"
         android:drawablePadding="10dp"
         android:fontFamily="@font/poppins"
-        android:text="Sign Out"
+        android:text="@string/sign_out"
         android:textColor="#2F2F2F"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view4" />
+        app:layout_constraintTop_toBottomOf="@+id/view4"
+        app:drawableLeftCompat="@drawable/ic_sign_out"
+        app:drawableRightCompat="@drawable/ic_arrow_forward" />
 
     <View
         android:id="@+id/view5"

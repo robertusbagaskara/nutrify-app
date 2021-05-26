@@ -21,7 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="86dp"
             android:scaleType="centerCrop"
-            tools:srcCompat="@tools:sample/avatars"/>
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/app_name" />
 
     </androidx.cardview.widget.CardView>
 
