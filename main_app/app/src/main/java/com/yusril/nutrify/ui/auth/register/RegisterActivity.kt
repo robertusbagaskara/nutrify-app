@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
@@ -101,12 +102,23 @@ class RegisterActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         binding.btnSignUp.setOnClickListener {
+            btnLoading(true)
             register()
         }
 
         binding.btnSignIn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun btnLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.btnSignIn.text = ""
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.btnSignIn.text = getString(R.string.sign_in)
+            binding.progressBar.visibility = View.GONE
         }
     }
 
@@ -124,6 +136,7 @@ class RegisterActivity : AppCompatActivity() {
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                 } else {
+                    btnLoading(false)
                     Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
                     Log.d("register", task.exception.toString())
                 }

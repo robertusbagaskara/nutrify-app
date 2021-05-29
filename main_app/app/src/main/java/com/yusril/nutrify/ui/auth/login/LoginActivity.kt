@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
@@ -40,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
 
         val formIsValid = combine(
             inputEmailVal, inputPasswordVal
-        ) { email, password->
+        ) { email, password ->
             val isValidEmail = Patterns.EMAIL_ADDRESS.matcher(email).matches()
             val isValidPassword = password.length > 6
 
@@ -85,7 +86,18 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnSignIn.setOnClickListener {
+            btnLoading(true)
             login()
+        }
+    }
+
+    private fun btnLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.btnSignIn.text = ""
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.btnSignIn.text = getString(R.string.sign_in)
+            binding.progressBar.visibility = View.GONE
         }
     }
 
@@ -96,12 +108,14 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this, getString(R.string.login_success), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.login_success), Toast.LENGTH_SHORT)
+                        .show()
                     Log.d("login", "berhasil")
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
+                    btnLoading(false)
                     Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
                     Log.d("login", task.exception.toString())
                 }

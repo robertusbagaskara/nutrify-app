@@ -107,6 +107,19 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/confirm_password_form" />
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?attr/progressBarStyle"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:elevation="7dp"
+            android:indeterminateTint="@color/white"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/btn_sign_up"
+            app:layout_constraintLeft_toLeftOf="@id/btn_sign_up"
+            app:layout_constraintRight_toRightOf="@id/btn_sign_up"
+            app:layout_constraintTop_toTopOf="@id/btn_sign_up" />
+
         <TextView
             android:id="@+id/or"
             android:layout_width="wrap_content"
