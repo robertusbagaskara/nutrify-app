@@ -60,7 +60,7 @@
     <string name="english">English</string>
     <string name="textview">textView</string>
     <string name="name">Name</string>
-    <string name="sign_out">Sign Out</string>
+    <string name="sign_out">Sign out</string>
     <string name="recommendation_for_you">Recommendation for you</string>
     <string name="login_success">Login Success</string>
     <string name="register_success">Register success</string>
@@ -68,4 +68,6 @@
     <string name="password_not_valid">Password less than 6 characters!</string>
     <string name="password_not_same">Passwords are not the same!</string>
     <string name="name_not_valid">name cannot be empty</string>
+    <string name="confirm_sign_out">Are you sure to sign out?</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.yusril.nutrify.R
 import com.yusril.nutrify.databinding.FragmentProfileBinding
@@ -40,13 +41,40 @@ class ProfileFragment : Fragment() {
         binding.tvBirthDate.text = "03-12-1999"
 
         binding.btnSignout.setOnClickListener {
-            Log.d("logout", "apa yang diklik")
-            auth.signOut()
-            Log.d("logout", "apa yang terjadi")
-            Intent(context?.applicationContext, LoginActivity::class.java).also {
-                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(it)
-            }
+            showLogoutAlert()
         }
+    }
+
+    private fun signOut() {
+        auth.signOut()
+        Intent(context?.applicationContext, LoginActivity::class.java).also {
+            it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(it)
+        }
+    }
+
+    private fun showLogoutAlert() {
+        context?.let {
+            MaterialAlertDialogBuilder(it)
+                .setTitle(resources.getString(R.string.sign_out))
+                .setMessage(resources.getString(R.string.confirm_sign_out))
+                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .setPositiveButton(resources.getString(R.string.sign_out)) { _, _ ->
+                    signOut()
+                }
+                .show()
+        }
+//        MaterialAlertDialogBuilder(context?.applicationContext!!)
+//            .setTitle(resources.getString(R.string.sign_out))
+//            .setMessage(resources.getString(R.string.confirm_sign_out))
+//            .setNegativeButton(resources.getString(R.string.cancel)) { dialog, _ ->
+//                dialog.dismiss()
+//            }
+//            .setPositiveButton(resources.getString(R.string.sign_out)) { _, _ ->
+//                signOut()
+//            }
+//            .show()
     }
 }
