@@ -110,14 +110,15 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Toast.makeText(this, getString(R.string.login_success), Toast.LENGTH_SHORT)
                         .show()
-                    Log.d("login", "berhasil")
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
                     btnLoading(false)
-                    Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
-                    Log.d("login", task.exception.toString())
+                    binding.textError.apply {
+                        text = task.exception?.message
+                        visibility = View.VISIBLE
+                    }
                 }
             }
     }

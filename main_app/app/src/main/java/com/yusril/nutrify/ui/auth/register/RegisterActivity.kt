@@ -132,13 +132,14 @@ class RegisterActivity : AppCompatActivity() {
                     profileUpdate()
                     Toast.makeText(this, getString(R.string.register_success), Toast.LENGTH_SHORT)
                         .show()
-                    Log.d("register", "berhasil")
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                 } else {
                     btnLoading(false)
-                    Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
-                    Log.d("register", task.exception.toString())
+                    binding.textError.apply {
+                        text = task.exception?.message
+                        visibility = View.VISIBLE
+                    }
                 }
             }
     }
