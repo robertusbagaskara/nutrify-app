@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1012150473579",
+    "project_id": "nutrify-1f6d7",
+    "storage_bucket": "nutrify-1f6d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012150473579:android:582aa0b927fcc1c13bb22e",
+        "android_client_info": {
+          "package_name": "com.yusril.nutrify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012150473579-9qh8eaqa36k9fr195njeemaj32tpf6dk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCie7WMkM7X1Abq_OVios18rUCMluP7RnA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1012150473579-9qh8eaqa36k9fr195njeemaj32tpf6dk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
