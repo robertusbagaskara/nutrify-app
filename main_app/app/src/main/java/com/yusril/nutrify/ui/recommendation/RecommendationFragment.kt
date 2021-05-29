@@ -24,13 +24,14 @@ class RecommendationFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         recommendationViewModel = ViewModelProvider(this).get(RecommendationViewModel::class.java)
         val textView: TextView = binding.root.findViewById(R.id.text_recommendation)
         recommendationViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
+
     }
 }

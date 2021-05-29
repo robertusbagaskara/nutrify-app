@@ -172,7 +172,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view4"
         app:drawableLeftCompat="@drawable/ic_sign_out"
-        app:drawableRightCompat="@drawable/ic_arrow_forward" />
+        app:drawableRightCompat="@drawable/ic_arrow_forward"
+        android:clickable="true"
+        android:focusable="true" />
 
     <View
         android:id="@+id/view5"
