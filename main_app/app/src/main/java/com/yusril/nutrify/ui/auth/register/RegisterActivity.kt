@@ -40,6 +40,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
+        auth = FirebaseAuth.getInstance()
 
         val formIsValid = combine(
             inputNameVal, inputEmailVal, inputPasswordVal, inputConfirmPasswordVal
@@ -62,11 +63,6 @@ class RegisterActivity : AppCompatActivity() {
                 binding.inputConfirmPassword.error = getString(R.string.password_not_same)
             }
 
-            Log.d(
-                "isValid",
-                isValidName.toString() + isValidEmail.toString() + isValidPassword.toString() + isValidConfirmPassword.toString()
-            )
-
             isValidName && isValidEmail && isValidPassword && isValidConfirmPassword
         }
 
@@ -85,6 +81,16 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        binding.btnSignUp.setOnClickListener {
+            btnLoading(true)
+            register()
+        }
+
+        binding.btnSignIn.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         lifecycleScope.launch {
             formIsValid.collect {
                 binding.btnSignUp.apply {
@@ -98,18 +104,6 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-
-        auth = FirebaseAuth.getInstance()
-
-        binding.btnSignUp.setOnClickListener {
-            btnLoading(true)
-            register()
-        }
-
-        binding.btnSignIn.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun btnLoading(isLoading: Boolean) {
@@ -151,13 +145,7 @@ class RegisterActivity : AppCompatActivity() {
         val profileUpdates = userProfileChangeRequest {
             displayName = name
         }
-
         user!!.updateProfile(profileUpdates)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d("TAG", "User profile updated.")
-                }
-            }
     }
 
 }
