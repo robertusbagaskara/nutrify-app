@@ -13,6 +13,7 @@ import com.yusril.nutrify.R
 import com.yusril.nutrify.databinding.FragmentProfileBinding
 import com.yusril.nutrify.ui.MainActivity
 import com.yusril.nutrify.ui.auth.login.LoginActivity
+import com.yusril.nutrify.ui.profile.edtprofile.EditProfileActivity
 
 class ProfileFragment : Fragment() {
 
@@ -43,6 +44,12 @@ class ProfileFragment : Fragment() {
         binding.btnSignout.setOnClickListener {
             showLogoutAlert()
         }
+
+        binding.btnEditProfile.setOnClickListener {
+            val intent = Intent(context?.applicationContext, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun signOut() {

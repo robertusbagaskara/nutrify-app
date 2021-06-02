@@ -26,7 +26,7 @@
     <string name="sign_up_with_gmail">Sign up with gmail account</string>
     <string name="already_have_an_account">Already have an account? Sign in</string>
 
-    <string name="birth_date">birth date</string>
+    <string name="birth_date">Birth date</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="weight">%d kg</string>
     <string name="height">%d cm</string>
@@ -70,4 +70,9 @@
     <string name="name_not_valid">name cannot be empty</string>
     <string name="confirm_sign_out">Are you sure to sign out?</string>
     <string name="cancel">Cancel</string>
+    <string name="height_input">Height (cm)</string>
+    <string name="weight_input">Weight (kg)</string>
+    <string name="field_not_valid">field cannot empty</string>
+    <string name="gender_not_valid">Choose your gender</string>
+    <string name="date_not_valid">Choose your birth date</string>
 </resources>
