@@ -141,10 +141,10 @@ class RegisterActivity : AppCompatActivity(),
 
     private fun btnLoading(isLoading: Boolean) {
         if (isLoading) {
-            binding.btnSignIn.text = ""
+            binding.btnSignUp.text = ""
             binding.progressBar.visibility = View.VISIBLE
         } else {
-            binding.btnSignIn.text = getString(R.string.sign_in)
+            binding.btnSignUp.text = getString(R.string.sign_up)
             binding.progressBar.visibility = View.GONE
         }
     }

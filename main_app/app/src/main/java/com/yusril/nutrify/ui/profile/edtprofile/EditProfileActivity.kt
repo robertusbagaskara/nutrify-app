@@ -53,7 +53,6 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
 
         binding.inputGender.setAdapter(adapter)
 
-        Log.d("viewmodel uid", viewModel.id)
         viewModel.getProfile().observe(this, {
             if (it != null) {
                 when (it) {
@@ -64,13 +63,17 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
                     }
                     is Resource.Error -> {
                         showLoading(false)
-                        showError()
+                        showError(it)
                     }
                 }
             }
         })
 
 
+    }
+
+    private fun showError(it: Resource.Error<User>) {
+        Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
     }
 
     private fun setUserProfile(inputUser: User) {
@@ -85,6 +88,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
 
             viewModel.setProfile(_user)
         }
+        Toast.makeText(this, getString(R.string.user_update_success), Toast.LENGTH_SHORT).show()
     }
 
     private fun populateProfile(it: Resource.Success<User>) {
@@ -100,15 +104,11 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
     private fun showLoading(state: Boolean) {
         if (state) {
             binding.progressBar.visibility = View.VISIBLE
-            binding.editProfileActivity.rootView.visibility = View.GONE
+            binding.btnSave.text = " "
         } else {
             binding.progressBar.visibility = View.GONE
-            binding.editProfileActivity.rootView.visibility = View.VISIBLE
+            binding.btnSave.text = getString(R.string.btn_save)
         }
-    }
-
-    private fun showError() {
-        Toast.makeText(this, "Terjadi error", Toast.LENGTH_SHORT).show()
     }
 
     override fun onClick(v: View) {
