@@ -2,13 +2,13 @@ package com.yusril.nutrify.core.data.source.firebase
 
 import com.yusril.nutrify.core.data.Resource
 import com.yusril.nutrify.core.data.source.firebase.profile.ProfileData
-import com.yusril.nutrify.core.data.source.firebase.response.FirebaseResponse
-import com.yusril.nutrify.core.data.source.firebase.response.UserResponse
+import com.yusril.nutrify.core.data.source.firebase.profile.response.UserResponse
+import com.yusril.nutrify.core.data.source.firebase.statistics.StatisticData
+import com.yusril.nutrify.core.data.source.firebase.statistics.response.ListStatisticsResponse
+import com.yusril.nutrify.core.domain.model.ListStatistics
 import com.yusril.nutrify.core.domain.model.User
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 
-class FirebaseDataSource(private val profileData: ProfileData) {
+class FirebaseDataSource(private val profileData: ProfileData, private val statisticData: StatisticData) {
 
     suspend fun getProfile(id: String): Resource<UserResponse> =
         profileData.getProfile(id)
@@ -16,4 +16,9 @@ class FirebaseDataSource(private val profileData: ProfileData) {
     suspend fun setProfile(id: String, user: User) =
         profileData.setProfile(id, user)
 
+    suspend fun setStatistic(id: String, date: String, listStatistics: ListStatistics): Resource<Boolean> =
+        statisticData.setStatistic(id, date, listStatistics)
+
+    suspend fun getStatisticToday(id: String, date: String): Resource<List<ListStatisticsResponse>> =
+        statisticData.getStatisticToday(id, date)
 }

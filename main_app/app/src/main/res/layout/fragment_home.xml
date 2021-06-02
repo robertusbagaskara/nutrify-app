@@ -171,6 +171,13 @@
 
         </androidx.cardview.widget.CardView>
 
+        <Button
+            android:id="@+id/btn_generate_dummy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/health_tips_card"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

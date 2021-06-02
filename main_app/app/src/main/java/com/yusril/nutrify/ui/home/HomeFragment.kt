@@ -5,17 +5,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.google.firebase.auth.FirebaseAuth
 import com.yusril.nutrify.R
+import com.yusril.nutrify.core.domain.model.Food
+import com.yusril.nutrify.core.domain.model.ListStatistics
 import com.yusril.nutrify.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.ArrayList
+import org.koin.android.viewmodel.ext.android.viewModel
+import kotlin.random.Random
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +39,37 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
+
+        viewModel.id = currentUser!!.uid
+        viewModel.date = Calendar.getInstance().time.toString()
+
         showChart()
+
+        binding.btnGenerateDummy.setOnClickListener {
+            setStatistic()
+        }
+    }
+
+    private fun setStatistic() {
+        val currentTime = Calendar.getInstance().time
+        val foods = arrayOf("nasi", "ikan", "ayam")
+        val food = ArrayList<Food>()
+        foods.map {
+            val item = Food(
+                name = it
+            )
+            food.add(item)
+        }
+        val listStats = ListStatistics(
+            foods = food,
+            total_calories = Random.nextInt(1, 700),
+            time = currentTime.toString()
+        )
+        lifecycleScope.launch {
+            viewModel.setStatistic(listStats)
+        }
     }
 
     private fun showChart() {

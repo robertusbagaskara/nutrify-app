@@ -12,12 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
 import com.yusril.nutrify.R
-import com.yusril.nutrify.core.data.source.firebase.response.UserResponse
 import com.yusril.nutrify.databinding.ActivityLoginBinding
 import com.yusril.nutrify.ui.MainActivity
 import com.yusril.nutrify.ui.auth.register.RegisterActivity

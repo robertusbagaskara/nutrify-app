@@ -2,6 +2,7 @@ package com.yusril.nutrify.di
 
 import com.yusril.nutrify.core.domain.usecase.NutrifyInteractor
 import com.yusril.nutrify.core.domain.usecase.NutrifyUseCase
+import com.yusril.nutrify.ui.home.HomeViewModel
 import com.yusril.nutrify.ui.profile.ProfileViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -12,4 +13,5 @@ val useCaseModule = module {
 
 val viewModelModule = module {
     viewModel { ProfileViewModel(get()) }
+    viewModel { HomeViewModel(get()) }
 }

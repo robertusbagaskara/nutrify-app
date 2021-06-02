@@ -1,8 +1,9 @@
 package com.yusril.nutrify
 
 import android.app.Application
-import com.yusril.nutrify.core.di.firebaseModule
+import com.yusril.nutrify.core.di.profileModule
 import com.yusril.nutrify.core.di.repositoryModule
+import com.yusril.nutrify.core.di.statisticModule
 import com.yusril.nutrify.di.useCaseModule
 import com.yusril.nutrify.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -19,7 +20,8 @@ class MyApplication : Application() {
             androidContext(this@MyApplication)
             modules(
                 listOf(
-                    firebaseModule,
+                    profileModule,
+                    statisticModule,
                     repositoryModule,
                     useCaseModule,
                     viewModelModule

@@ -1,11 +1,9 @@
 package com.yusril.nutrify.core.data.source.firebase.profile
 
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
 import com.yusril.nutrify.core.data.Resource
-import com.yusril.nutrify.core.data.source.firebase.response.UserResponse
+import com.yusril.nutrify.core.data.source.firebase.profile.response.UserResponse
 import com.yusril.nutrify.core.domain.model.User
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -21,7 +19,7 @@ class ProfileData {
                     cont.resume(Resource.Success(true))
                 }
                 .addOnFailureListener {
-                    cont.resume(Resource.Error(it))
+                    cont.resume(Resource.Error(it.message))
                 }
         }
 
@@ -35,11 +33,11 @@ class ProfileData {
                     try {
                         cont.resume(Resource.Success(user) as Resource<UserResponse>)
                     } catch (e: Exception) {
-                        cont.resume(Resource.Error(e))
+                        cont.resume(Resource.Error(e.message))
                     }
                 }
                 .addOnFailureListener {
-                    cont.resume(Resource.Error(it))
+                    cont.resume(Resource.Error(it.message))
                 }
         }
 }

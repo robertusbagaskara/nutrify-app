@@ -1,4 +1,4 @@
-package com.yusril.nutrify.core.data.source.firebase.response
+package com.yusril.nutrify.core.data.source.firebase.profile.response
 
 data class UserResponse(
     var birth_date: String = "",
