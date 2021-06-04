@@ -13,8 +13,8 @@ class NutrifyInteractor(private val iNutrifyRepository: INutrifyRepository) : Nu
     override suspend fun setProfile(id: String, user: User): Resource<Boolean> =
         iNutrifyRepository.setProfile(id, user)
 
-    override suspend fun setStatistic(id: String, date: String, listStatistics: ListStatistics): Resource<Boolean> =
-        iNutrifyRepository.setStatistic(id, date, listStatistics)
+    override suspend fun setStatistic(id: String, date: String, time: String, listStatistics: ListStatistics): Resource<Boolean> =
+        iNutrifyRepository.setStatistic(id, date, time, listStatistics)
 
     override suspend fun getStatisticToday(id: String, date: String): Resource<List<ListStatistics>> =
         iNutrifyRepository.getStatisticToday(id, date)

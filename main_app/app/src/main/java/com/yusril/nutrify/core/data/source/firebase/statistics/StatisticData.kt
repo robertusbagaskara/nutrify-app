@@ -1,22 +1,27 @@
 package com.yusril.nutrify.core.data.source.firebase.statistics
 
+import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import com.yusril.nutrify.core.data.Resource
-import com.yusril.nutrify.core.data.source.firebase.profile.response.UserResponse
 import com.yusril.nutrify.core.data.source.firebase.statistics.response.FoodResponse
 import com.yusril.nutrify.core.data.source.firebase.statistics.response.ListStatisticsResponse
 import com.yusril.nutrify.core.domain.model.ListStatistics
-import com.yusril.nutrify.core.domain.model.User
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
+@Suppress("CAST_NEVER_SUCCEEDS")
 class StatisticData {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-    suspend fun setStatistic(id: String, date: String ,listStatistics: ListStatistics): Resource<Boolean> =
+    suspend fun setStatistic(
+        id: String,
+        date: String,
+        time: String,
+        listStatistics: ListStatistics
+    ): Resource<Boolean> =
         suspendCoroutine { cont ->
-            db.collection("statistics").document(id).collection(date).document()
+            db.collection("statistics").document(id).collection(date).document(time)
                 .set(listStatistics)
                 .addOnSuccessListener {
                     cont.resume(Resource.Success(true))
@@ -26,14 +31,17 @@ class StatisticData {
                 }
         }
 
-    @Suppress("UNCHECKED_CAST")
-    suspend fun getStatisticToday(id: String, date: String): Resource<List<ListStatisticsResponse>> =
+    suspend fun getStatisticToday(
+        id: String,
+        date: String
+    ): Resource<List<ListStatisticsResponse>> =
         suspendCoroutine { cont ->
             db.collection("statistics").document(id).collection(date)
                 .get()
                 .addOnSuccessListener {
+                    Log.v("TEST", "TEST")
                     val todayStats = ArrayList<ListStatisticsResponse>()
-                    for (stat in  it) {
+                    for (stat in it) {
                         val item = stat.toObject<ListStatisticsResponse>()
                         val food = ArrayList<FoodResponse>()
                         item.foods.map { item ->
@@ -50,6 +58,7 @@ class StatisticData {
                         todayStats.add(listStats)
                     }
                     try {
+                        Log.v("listStats", todayStats.toString())
                         cont.resume(Resource.Success(todayStats) as Resource<List<ListStatisticsResponse>>)
                     } catch (e: Exception) {
                         cont.resume(Resource.Error(e.message))

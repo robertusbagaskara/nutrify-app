@@ -22,8 +22,8 @@ class NutrifyRepository(private val firebaseDataSource: FirebaseDataSource) : IN
     }
 
 
-    override suspend fun setStatistic(id: String, date: String, listStatistics: ListStatistics): Resource<Boolean> =
-        firebaseDataSource.setStatistic(id, date, listStatistics)
+    override suspend fun setStatistic(id: String, date: String, time: String, listStatistics: ListStatistics): Resource<Boolean> =
+        firebaseDataSource.setStatistic(id, date, time, listStatistics)
 
     override suspend fun getStatisticToday(id: String, date: String): Resource<List<ListStatistics>> {
         return when(val response = firebaseDataSource.getStatisticToday(id, date)) {

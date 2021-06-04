@@ -8,7 +8,10 @@ import com.yusril.nutrify.core.data.source.firebase.statistics.response.ListStat
 import com.yusril.nutrify.core.domain.model.ListStatistics
 import com.yusril.nutrify.core.domain.model.User
 
-class FirebaseDataSource(private val profileData: ProfileData, private val statisticData: StatisticData) {
+class FirebaseDataSource(
+    private val profileData: ProfileData,
+    private val statisticData: StatisticData
+) {
 
     suspend fun getProfile(id: String): Resource<UserResponse> =
         profileData.getProfile(id)
@@ -16,9 +19,15 @@ class FirebaseDataSource(private val profileData: ProfileData, private val stati
     suspend fun setProfile(id: String, user: User) =
         profileData.setProfile(id, user)
 
-    suspend fun setStatistic(id: String, date: String, listStatistics: ListStatistics): Resource<Boolean> =
-        statisticData.setStatistic(id, date, listStatistics)
+    suspend fun setStatistic(
+        id: String,
+        date: String,
+        time: String,
+        listStatistics: ListStatistics
+    ): Resource<Boolean> =
+        statisticData.setStatistic(id, date, time, listStatistics)
 
-    suspend fun getStatisticToday(id: String, date: String): Resource<List<ListStatisticsResponse>> =
-        statisticData.getStatisticToday(id, date)
+    suspend fun getStatisticToday(id: String, date: String) : Resource<List<ListStatisticsResponse>> {
+        return statisticData.getStatisticToday(id, date)
+    }
 }

@@ -10,7 +10,7 @@ interface NutrifyUseCase {
 
     suspend fun setProfile(id: String, user: User): Resource<Boolean>
 
-    suspend fun setStatistic(id: String, date: String, listStatistics: ListStatistics): Resource<Boolean>
+    suspend fun setStatistic(id: String, date: String, time: String, listStatistics: ListStatistics): Resource<Boolean>
 
     suspend fun getStatisticToday(id: String, date: String): Resource<List<ListStatistics>>
 

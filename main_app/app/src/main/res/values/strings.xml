@@ -9,6 +9,7 @@
     <string name="title_scan">Scan</string>
 
     <string name="username">Hello Bambang,</string>
+    <string name="welcome_greeting">Hello %s,</string>
     <string name="calories_today">Your calories today</string>
     <string name="calories_kkal">kkal</string>
     <string name="calories_total">1965</string>
@@ -76,4 +77,5 @@
     <string name="gender_not_valid">Choose your gender</string>
     <string name="date_not_valid">Choose your birth date</string>
     <string name="user_update_success">Update success</string>
+    <string name="health_tips_title">Health tips</string>
 </resources>

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.mikephil.charting.data.Entry
 import com.yusril.nutrify.core.data.Resource
 import com.yusril.nutrify.core.domain.model.ListStatistics
 import com.yusril.nutrify.core.domain.usecase.NutrifyUseCase
@@ -15,6 +16,10 @@ class HomeViewModel(private val nutrifyUseCase: NutrifyUseCase) : ViewModel() {
     private lateinit var stats: LiveData<Resource<List<ListStatistics>>>
     var id: String = ""
     var date: String = ""
+    var time: String = ""
+
+    private val _entries = MutableLiveData<List<Entry>>()
+    private lateinit var entries: LiveData<List<Entry>>
 
     fun getStatisticToday(): LiveData<Resource<List<ListStatistics>>> {
         stats = _stats
@@ -26,6 +31,6 @@ class HomeViewModel(private val nutrifyUseCase: NutrifyUseCase) : ViewModel() {
     }
 
     suspend fun setStatistic(listStatistics: ListStatistics) {
-        nutrifyUseCase.setStatistic(id, date, listStatistics)
+        nutrifyUseCase.setStatistic(id, date, time, listStatistics)
     }
 }

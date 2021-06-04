@@ -128,7 +128,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="@string/today_statistic"
+            android:text="@string/health_tips_title"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
