@@ -18,9 +18,6 @@ class HomeViewModel(private val nutrifyUseCase: NutrifyUseCase) : ViewModel() {
     var date: String = ""
     var time: String = ""
 
-    private val _entries = MutableLiveData<List<Entry>>()
-    private lateinit var entries: LiveData<List<Entry>>
-
     fun getStatisticToday(): LiveData<Resource<List<ListStatistics>>> {
         stats = _stats
         _stats.value = Resource.Loading()

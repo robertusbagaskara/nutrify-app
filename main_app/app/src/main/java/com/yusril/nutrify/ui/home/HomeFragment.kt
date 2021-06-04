@@ -57,6 +57,7 @@ class HomeFragment : Fragment() {
 
         val currentTime = calendar.get(Calendar.HOUR_OF_DAY)
         val times = currentTime.toString()
+        Log.d("calendar", currentTime.toString())
 
         viewModel.id = currentUser!!.uid
         viewModel.date = dateLocalFormat
