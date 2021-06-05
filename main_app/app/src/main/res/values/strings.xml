@@ -78,4 +78,5 @@
     <string name="date_not_valid">Choose your birth date</string>
     <string name="user_update_success">Update success</string>
     <string name="health_tips_title">Health tips</string>
+    <string name="week_button">%s - %s</string>
 </resources>

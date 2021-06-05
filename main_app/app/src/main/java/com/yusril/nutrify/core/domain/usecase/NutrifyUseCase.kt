@@ -1,6 +1,7 @@
 package com.yusril.nutrify.core.domain.usecase
 
 import com.yusril.nutrify.core.data.Resource
+import com.yusril.nutrify.core.domain.model.CaloryPerDay
 import com.yusril.nutrify.core.domain.model.ListStatistics
 import com.yusril.nutrify.core.domain.model.User
 
@@ -14,4 +15,11 @@ interface NutrifyUseCase {
 
     suspend fun getStatisticToday(id: String, date: String): Resource<List<ListStatistics>>
 
+    suspend fun setTotalCaloriesPerDay(
+        id: String,
+        date: String,
+        total_calories: CaloryPerDay
+    ): Resource<Boolean>
+
+    suspend fun getTotalCaloriesPerDay(id: String, date: String, lowerLimit: Int, upperLimit: Int): Resource<List<CaloryPerDay>>
 }

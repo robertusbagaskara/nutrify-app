@@ -2,7 +2,7 @@ package com.yusril.nutrify.core.data.source
 
 import com.yusril.nutrify.core.data.Resource
 import com.yusril.nutrify.core.data.source.firebase.FirebaseDataSource
-import com.yusril.nutrify.core.data.source.firebase.statistics.response.ListStatisticsResponse
+import com.yusril.nutrify.core.domain.model.CaloryPerDay
 import com.yusril.nutrify.core.domain.model.ListStatistics
 import com.yusril.nutrify.core.domain.model.User
 import com.yusril.nutrify.core.domain.repository.INutrifyRepository
@@ -28,6 +28,18 @@ class NutrifyRepository(private val firebaseDataSource: FirebaseDataSource) : IN
     override suspend fun getStatisticToday(id: String, date: String): Resource<List<ListStatistics>> {
         return when(val response = firebaseDataSource.getStatisticToday(id, date)) {
             is Resource.Success -> Resource.Success(DataMapper.mapListStatisticToDomain(response.data))
+            is Resource.Error -> Resource.Error(response.exception)
+            is Resource.Loading -> Resource.Loading()
+        }
+    }
+
+
+    override suspend fun setTotalCaloriesPerDay(id: String, date: String, total_calories: CaloryPerDay): Resource<Boolean> =
+        firebaseDataSource.setTotalCaloriesPerDay(id, date, total_calories)
+
+    override suspend fun getTotalCaloriesPerDay(id: String, date: String, lowerLimit: Int, upperLimit: Int): Resource<List<CaloryPerDay>> {
+        return when(val response = firebaseDataSource.getTotalCaloriesPerDay(id, date, lowerLimit, upperLimit)) {
+            is Resource.Success -> Resource.Success(DataMapper.mapCaloryDayResponsetoDomain(response.data))
             is Resource.Error -> Resource.Error(response.exception)
             is Resource.Loading -> Resource.Loading()
         }

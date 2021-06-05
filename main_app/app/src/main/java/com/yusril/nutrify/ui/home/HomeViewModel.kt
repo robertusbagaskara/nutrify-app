@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.mikephil.charting.data.Entry
 import com.yusril.nutrify.core.data.Resource
 import com.yusril.nutrify.core.domain.model.ListStatistics
 import com.yusril.nutrify.core.domain.usecase.NutrifyUseCase

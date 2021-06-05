@@ -2,6 +2,7 @@ package com.yusril.nutrify.core.domain.repository
 
 import com.yusril.nutrify.core.data.Resource
 import com.yusril.nutrify.core.data.source.firebase.statistics.response.ListStatisticsResponse
+import com.yusril.nutrify.core.domain.model.CaloryPerDay
 import com.yusril.nutrify.core.domain.model.ListStatistics
 import com.yusril.nutrify.core.domain.model.User
 
@@ -14,5 +15,9 @@ interface INutrifyRepository {
     suspend fun setStatistic(id: String, date: String, time: String, listStatistics: ListStatistics): Resource<Boolean>
 
     suspend fun getStatisticToday(id: String, date: String): Resource<List<ListStatistics>>
+
+    suspend fun setTotalCaloriesPerDay(id: String, date: String, total_calories: CaloryPerDay): Resource<Boolean>
+
+    suspend fun getTotalCaloriesPerDay(id: String, date: String, lowerLimit: Int, upperLimit: Int): Resource<List<CaloryPerDay>>
 
 }

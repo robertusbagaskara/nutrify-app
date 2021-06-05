@@ -14,9 +14,13 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.google.firebase.auth.FirebaseAuth
 import com.yusril.nutrify.R
 import com.yusril.nutrify.core.data.Resource
+import com.yusril.nutrify.core.domain.model.CaloryPerDay
 import com.yusril.nutrify.core.domain.model.Food
 import com.yusril.nutrify.core.domain.model.ListStatistics
 import com.yusril.nutrify.databinding.FragmentHomeBinding
+import com.yusril.nutrify.ui.statistic.StatisticsViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -29,9 +33,14 @@ import kotlin.random.Random
 class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModel()
+    private val statViewModel: StatisticsViewModel by viewModel()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var calendar: Calendar
+    private lateinit var total_calories: CaloryPerDay
+    private var dateLocalFormat: String = ""
+    private var dayLocalFormat: String = ""
+    private var times: String = ""
     private var totalCalories: Int = 0
     private var entries: ArrayList<Entry> = ArrayList()
 
@@ -53,15 +62,20 @@ class HomeFragment : Fragment() {
 
         val dateLocal = LocalDateTime.now()
         val formatter = DateTimeFormatter.BASIC_ISO_DATE
-        val dateLocalFormat = dateLocal.format(formatter)
-
+        dateLocalFormat = dateLocal.format(formatter)
         val currentTime = calendar.get(Calendar.HOUR_OF_DAY)
-        val times = currentTime.toString()
+        times = currentTime.toString()
         Log.d("calendar", currentTime.toString())
+
+        val dayFormatter = DateTimeFormatter.ofPattern("EE", Locale.getDefault())
+        dayLocalFormat = dateLocal.format(dayFormatter)
 
         viewModel.id = currentUser!!.uid
         viewModel.date = dateLocalFormat
         viewModel.time = times
+
+        statViewModel.id = currentUser.uid
+        statViewModel.date = dateLocalFormat
 
         binding.username.text = getString(R.string.welcome_greeting, currentUser.displayName)
         binding.caloriesTotal.text = totalCalories.toString()
@@ -119,7 +133,12 @@ class HomeFragment : Fragment() {
                                 )
                             }
 
+                            total_calories =
+                                CaloryPerDay(totalCalories, dayLocalFormat, dateLocalFormat.toInt())
                             binding.caloriesTotal.text = totalCalories.toString()
+                            GlobalScope.launch(Dispatchers.Default) {
+                                statViewModel.setTotalCaloriesPerDay(total_calories)
+                            }
 
                             val vl = LineDataSet(entries, "My calories")
                             vl.apply {

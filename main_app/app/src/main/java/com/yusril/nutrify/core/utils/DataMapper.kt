@@ -1,7 +1,9 @@
 package com.yusril.nutrify.core.utils
 
 import com.yusril.nutrify.core.data.source.firebase.profile.response.UserResponse
+import com.yusril.nutrify.core.data.source.firebase.statistics.response.CaloryPerDayResponse
 import com.yusril.nutrify.core.data.source.firebase.statistics.response.ListStatisticsResponse
+import com.yusril.nutrify.core.domain.model.CaloryPerDay
 import com.yusril.nutrify.core.domain.model.Food
 import com.yusril.nutrify.core.domain.model.ListStatistics
 import com.yusril.nutrify.core.domain.model.User
@@ -15,6 +17,19 @@ object DataMapper {
             weight = input.weight,
             gender = input.gender
         )
+
+    fun mapCaloryDayResponsetoDomain(input: List<CaloryPerDayResponse>) : List<CaloryPerDay> {
+        val list = ArrayList<CaloryPerDay>()
+        input.map {
+            val item = CaloryPerDay(
+                total = it.total,
+                day_name = it.day_name,
+                date = it.date
+            )
+            list.add(item)
+        }
+        return list
+    }
 
     fun mapListStatisticToDomain(input: List<ListStatisticsResponse>) : List<ListStatistics> {
         val list = ArrayList<ListStatistics>()
