@@ -3,6 +3,7 @@ package com.yusril.nutrify.core.domain.usecase
 import com.yusril.nutrify.core.data.Resource
 import com.yusril.nutrify.core.domain.model.CaloryPerDay
 import com.yusril.nutrify.core.domain.model.ListStatistics
+import com.yusril.nutrify.core.domain.model.RecommendationList
 import com.yusril.nutrify.core.domain.model.User
 import com.yusril.nutrify.core.domain.repository.INutrifyRepository
 
@@ -25,5 +26,9 @@ class NutrifyInteractor(private val iNutrifyRepository: INutrifyRepository) : Nu
 
     override suspend fun getTotalCaloriesPerDay(id: String, date: String, lowerLimit: Int, upperLimit: Int): Resource<List<CaloryPerDay>> =
         iNutrifyRepository.getTotalCaloriesPerDay(id, date, lowerLimit, upperLimit)
+
+    override suspend fun getRecommendation(minusCalories: Int): Resource<List<RecommendationList>> =
+        iNutrifyRepository.getRecommendation(minusCalories)
+
 
 }

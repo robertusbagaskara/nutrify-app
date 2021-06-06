@@ -4,6 +4,7 @@ import com.yusril.nutrify.core.data.Resource
 import com.yusril.nutrify.core.data.source.firebase.FirebaseDataSource
 import com.yusril.nutrify.core.domain.model.CaloryPerDay
 import com.yusril.nutrify.core.domain.model.ListStatistics
+import com.yusril.nutrify.core.domain.model.RecommendationList
 import com.yusril.nutrify.core.domain.model.User
 import com.yusril.nutrify.core.domain.repository.INutrifyRepository
 import com.yusril.nutrify.core.utils.DataMapper
@@ -44,5 +45,14 @@ class NutrifyRepository(private val firebaseDataSource: FirebaseDataSource) : IN
             is Resource.Loading -> Resource.Loading()
         }
     }
+
+    override suspend fun getRecommendation(minusCalories: Int): Resource<List<RecommendationList>> {
+        return when(val response = firebaseDataSource.getRecommendation(minusCalories)) {
+            is Resource.Success -> Resource.Success(DataMapper.mapRecommendationToDomain(response.data))
+            is Resource.Error -> Resource.Error(response.exception)
+            is Resource.Loading -> Resource.Loading()
+        }
+    }
+
 
 }

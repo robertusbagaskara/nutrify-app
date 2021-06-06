@@ -3,6 +3,7 @@ package com.yusril.nutrify.core.domain.usecase
 import com.yusril.nutrify.core.data.Resource
 import com.yusril.nutrify.core.domain.model.CaloryPerDay
 import com.yusril.nutrify.core.domain.model.ListStatistics
+import com.yusril.nutrify.core.domain.model.RecommendationList
 import com.yusril.nutrify.core.domain.model.User
 
 interface NutrifyUseCase {
@@ -22,4 +23,6 @@ interface NutrifyUseCase {
     ): Resource<Boolean>
 
     suspend fun getTotalCaloriesPerDay(id: String, date: String, lowerLimit: Int, upperLimit: Int): Resource<List<CaloryPerDay>>
+
+    suspend fun getRecommendation(minusCalories: Int): Resource<List<RecommendationList>>
 }

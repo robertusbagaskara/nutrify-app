@@ -3,6 +3,8 @@ package com.yusril.nutrify.core.data.source.firebase
 import com.yusril.nutrify.core.data.Resource
 import com.yusril.nutrify.core.data.source.firebase.profile.ProfileData
 import com.yusril.nutrify.core.data.source.firebase.profile.response.UserResponse
+import com.yusril.nutrify.core.data.source.firebase.recommendation.RecommendationData
+import com.yusril.nutrify.core.data.source.firebase.recommendation.response.RecommendationListResponse
 import com.yusril.nutrify.core.data.source.firebase.statistics.StatisticData
 import com.yusril.nutrify.core.data.source.firebase.statistics.response.CaloryPerDayResponse
 import com.yusril.nutrify.core.data.source.firebase.statistics.response.ListStatisticsResponse
@@ -12,7 +14,8 @@ import com.yusril.nutrify.core.domain.model.User
 
 class FirebaseDataSource(
     private val profileData: ProfileData,
-    private val statisticData: StatisticData
+    private val statisticData: StatisticData,
+    private val recommendationData: RecommendationData
 ) {
 
     suspend fun getProfile(id: String): Resource<UserResponse> =
@@ -44,5 +47,9 @@ class FirebaseDataSource(
 
     suspend fun getTotalCaloriesPerDay(id: String, date: String, lowerLimit: Int, upperLimit: Int) : Resource<List<CaloryPerDayResponse>> {
         return statisticData.getTotalCaloriesPerDay(id, date, lowerLimit, upperLimit)
+    }
+
+    suspend fun getRecommendation(minusCalories: Int): Resource<List<RecommendationListResponse>> {
+        return recommendationData.getRecommendation(minusCalories)
     }
 }

@@ -2,6 +2,7 @@ package com.yusril.nutrify
 
 import android.app.Application
 import com.yusril.nutrify.core.di.profileModule
+import com.yusril.nutrify.core.di.recommendationModule
 import com.yusril.nutrify.core.di.repositoryModule
 import com.yusril.nutrify.core.di.statisticModule
 import com.yusril.nutrify.di.useCaseModule
@@ -22,6 +23,7 @@ class MyApplication : Application() {
                 listOf(
                     profileModule,
                     statisticModule,
+                    recommendationModule,
                     repositoryModule,
                     useCaseModule,
                     viewModelModule

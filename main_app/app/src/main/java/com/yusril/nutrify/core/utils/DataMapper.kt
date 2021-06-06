@@ -1,12 +1,10 @@
 package com.yusril.nutrify.core.utils
 
 import com.yusril.nutrify.core.data.source.firebase.profile.response.UserResponse
+import com.yusril.nutrify.core.data.source.firebase.recommendation.response.RecommendationListResponse
 import com.yusril.nutrify.core.data.source.firebase.statistics.response.CaloryPerDayResponse
 import com.yusril.nutrify.core.data.source.firebase.statistics.response.ListStatisticsResponse
-import com.yusril.nutrify.core.domain.model.CaloryPerDay
-import com.yusril.nutrify.core.domain.model.Food
-import com.yusril.nutrify.core.domain.model.ListStatistics
-import com.yusril.nutrify.core.domain.model.User
+import com.yusril.nutrify.core.domain.model.*
 
 object DataMapper {
 
@@ -25,6 +23,18 @@ object DataMapper {
                 total = it.total,
                 day_name = it.day_name,
                 date = it.date
+            )
+            list.add(item)
+        }
+        return list
+    }
+
+    fun mapRecommendationToDomain(input: List<RecommendationListResponse>) : List<RecommendationList> {
+        val list = ArrayList<RecommendationList>()
+        input.map {
+            val item = RecommendationList(
+                name = it.name,
+                calories = it.calories
             )
             list.add(item)
         }

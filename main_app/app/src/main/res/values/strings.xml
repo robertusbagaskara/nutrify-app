@@ -79,4 +79,6 @@
     <string name="user_update_success">Update success</string>
     <string name="health_tips_title">Health tips</string>
     <string name="week_button">%s - %s</string>
+    <string name="total_calories">%d kkal</string>
+    <string name="not_found">Data not found</string>
 </resources>
