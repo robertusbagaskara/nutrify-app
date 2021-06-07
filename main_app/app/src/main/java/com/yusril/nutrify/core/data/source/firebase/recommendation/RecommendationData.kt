@@ -3,9 +3,7 @@ package com.yusril.nutrify.core.data.source.firebase.recommendation
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import com.yusril.nutrify.core.data.Resource
-import com.yusril.nutrify.core.data.source.firebase.profile.response.UserResponse
 import com.yusril.nutrify.core.data.source.firebase.recommendation.response.RecommendationListResponse
-import com.yusril.nutrify.core.domain.model.User
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 

@@ -14,7 +14,6 @@ import com.yusril.nutrify.ui.statistic.StatisticsViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 class RecommendationFragment : Fragment() {
     private lateinit var binding: FragmentRecommendationBinding

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yusril.nutrify.core.data.Resource
-import com.yusril.nutrify.core.domain.model.CaloryPerDay
 import com.yusril.nutrify.core.domain.model.RecommendationList
 import com.yusril.nutrify.core.domain.usecase.NutrifyUseCase
 import kotlinx.coroutines.launch

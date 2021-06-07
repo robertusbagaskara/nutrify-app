@@ -89,7 +89,7 @@ class StatisticsFragment : Fragment() {
                 getCaloriesPerDay(28, 22)
             }
         }
-        monthYearPicker()
+//        monthYearPicker()
         getConsumingChart()
 
     }
@@ -108,19 +108,15 @@ class StatisticsFragment : Fragment() {
                     }
                     is Resource.Success -> {
                         Log.d("resource com", it.toString())
-                        Log.d("FOOD COM", it.toString())
                         mapFood.clear()
                         it.data.map { data ->
-                            Log.d("FOOD DATA", data.foods.toString())
                             data.foods.map { foodItem ->
-                                Log.d("FOOD ITEM", foodItem.name.toString())
                                 if (mapFood.containsKey(foodItem.name)) {
-                                    mapFood[foodItem.name] = 1 + mapFood.get(foodItem.name)!!
+                                    mapFood[foodItem.name] = 1 + mapFood[foodItem.name]!!
                                 } else {
                                     mapFood[foodItem.name] = 1
                                 }
                             }
-                            Log.d("getstats com", "ini didalam iterasi")
 
                         }
                         showConsumingChart(mapFood)
@@ -222,24 +218,24 @@ class StatisticsFragment : Fragment() {
     }
 
     @SuppressLint("SimpleDateFormat")
-    private fun monthYearPicker() {
-        val calendar = Calendar.getInstance()
-        val monthSelected = calendar.get(Calendar.MONTH)
-        val yearSelected = calendar.get(Calendar.YEAR)
-
-        val dialogFragment = MonthYearPickerDialogFragment.getInstance(
-            monthSelected, yearSelected, "Select"
-        )
-        binding.btnMonthPicker.setOnClickListener {
-            activity?.let { dialogFragment.show(it.supportFragmentManager, null) }
-            dialogFragment.setOnDateSetListener { year, monthOfYear ->
-                val monthFormat = SimpleDateFormat("MMMM")
-                calendar.set(Calendar.MONTH, monthOfYear)
-                val month = monthFormat.format(calendar.time)
-                binding.btnMonthPicker.text = "$month $year"
-            }
-        }
-    }
+//    private fun monthYearPicker() {
+//        val calendar = Calendar.getInstance()
+//        val monthSelected = calendar.get(Calendar.MONTH)
+//        val yearSelected = calendar.get(Calendar.YEAR)
+//
+//        val dialogFragment = MonthYearPickerDialogFragment.getInstance(
+//            monthSelected, yearSelected, "Select"
+//        )
+//        binding.btnMonthPicker.setOnClickListener {
+//            activity?.let { dialogFragment.show(it.supportFragmentManager, null) }
+//            dialogFragment.setOnDateSetListener { year, monthOfYear ->
+//                val monthFormat = SimpleDateFormat("MMMM")
+//                calendar.set(Calendar.MONTH, monthOfYear)
+//                val month = monthFormat.format(calendar.time)
+//                binding.btnMonthPicker.text = "$month $year"
+//            }
+//        }
+//    }
 
     private fun getCaloriesPerDay(lowerLimit: Int, upperLimit: Int) {
         val lowerDateLocal = LocalDateTime.now().minusDays(lowerLimit.toLong())

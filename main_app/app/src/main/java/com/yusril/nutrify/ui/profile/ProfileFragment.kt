@@ -14,7 +14,6 @@ import com.yusril.nutrify.core.data.Resource
 import com.yusril.nutrify.core.domain.model.User
 import com.yusril.nutrify.databinding.FragmentProfileBinding
 import com.yusril.nutrify.ui.auth.login.LoginActivity
-import com.yusril.nutrify.ui.home.HomeViewModel
 import com.yusril.nutrify.ui.profile.edtprofile.EditProfileActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 

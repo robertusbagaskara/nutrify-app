@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nutrify"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.scan.ScanActivity"></activity>
+        <activity android:name=".ui.scan.ScanActivity" />
         <activity android:name=".ui.profile.edtlanguage.EditLanguageActivity" />
         <activity android:name=".ui.profile.edtprofile.EditProfileActivity" />
         <activity android:name=".ui.splashscreen.SplashScreenActivity">

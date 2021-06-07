@@ -1,7 +1,6 @@
 package com.yusril.nutrify.ui.profile.edtprofile
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -23,7 +22,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
 
     private lateinit var binding: ActivityEditProfileBinding
     private lateinit var auth: FirebaseAuth
-    var uid: String = ""
+    private var uid: String = ""
     val user: User = User()
     private val viewModel: ProfileViewModel by viewModel()
 
@@ -78,15 +77,15 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
 
     private fun setUserProfile(inputUser: User) {
         lifecycleScope.launch {
-            var _user = inputUser
-            _user = User(
+            var user = inputUser
+            user = User(
                 binding.tvBirthDate.text.toString(),
                 binding.inputHeight.text.toString().toInt(),
                 binding.inputWeight.text.toString().toInt(),
                 binding.inputGender.text.toString()
             )
 
-            viewModel.setProfile(_user)
+            viewModel.setProfile(user)
         }
         Toast.makeText(this, getString(R.string.user_update_success), Toast.LENGTH_SHORT).show()
     }
