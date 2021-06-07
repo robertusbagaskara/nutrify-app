@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yusril.nutrify.core.data.Resource
 import com.yusril.nutrify.core.domain.model.CaloryPerDay
+import com.yusril.nutrify.core.domain.model.ListStatistics
 import com.yusril.nutrify.core.domain.usecase.NutrifyUseCase
 import kotlinx.coroutines.launch
 
@@ -13,6 +14,9 @@ class StatisticsViewModel(private val nutrifyUseCase: NutrifyUseCase) : ViewMode
 
     private val _total = MutableLiveData<Resource<List<CaloryPerDay>>>()
     private lateinit var total: LiveData<Resource<List<CaloryPerDay>>>
+
+    private val _food = MutableLiveData<Resource<List<ListStatistics>>>()
+    private lateinit var food: LiveData<Resource<List<ListStatistics>>>
 
     var id: String = ""
     var date: String = ""
@@ -24,6 +28,15 @@ class StatisticsViewModel(private val nutrifyUseCase: NutrifyUseCase) : ViewMode
             _total.postValue(nutrifyUseCase.getTotalCaloriesPerDay(id, date, lowerLimit, upperLimit))
         }
         return total
+    }
+
+    fun getStatisticFood(lowerLimit: Int, upperLimit: Int): LiveData<Resource<List<ListStatistics>>> {
+        food = _food
+        _food.value = Resource.Loading()
+        viewModelScope.launch {
+            _food.postValue(nutrifyUseCase.getStatisticFood(id, lowerLimit, upperLimit))
+        }
+        return food
     }
 
     suspend fun setTotalCaloriesPerDay(total_calories: CaloryPerDay) {

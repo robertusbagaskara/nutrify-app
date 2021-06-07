@@ -37,6 +37,10 @@ class FirebaseDataSource(
     }
 
 
+    suspend fun getStatisticFood(id: String, lowerLimit: Int, upperLimit: Int) : Resource<List<ListStatisticsResponse>> {
+        return statisticData.getStatisticFood(id, lowerLimit, upperLimit)
+    }
+
 
     suspend fun setTotalCaloriesPerDay(
         id: String,

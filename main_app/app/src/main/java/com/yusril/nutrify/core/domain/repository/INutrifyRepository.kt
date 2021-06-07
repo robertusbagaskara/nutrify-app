@@ -18,6 +18,8 @@ interface INutrifyRepository {
 
     suspend fun getStatisticToday(id: String, date: String): Resource<List<ListStatistics>>
 
+    suspend fun getStatisticFood(id: String, lowerLimit: Int, upperLimit: Int): Resource<List<ListStatistics>>
+
     suspend fun setTotalCaloriesPerDay(id: String, date: String, total_calories: CaloryPerDay): Resource<Boolean>
 
     suspend fun getTotalCaloriesPerDay(id: String, date: String, lowerLimit: Int, upperLimit: Int): Resource<List<CaloryPerDay>>

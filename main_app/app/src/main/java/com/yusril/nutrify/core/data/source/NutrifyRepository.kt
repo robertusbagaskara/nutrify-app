@@ -34,6 +34,14 @@ class NutrifyRepository(private val firebaseDataSource: FirebaseDataSource) : IN
         }
     }
 
+    override suspend fun getStatisticFood(id: String, lowerLimit: Int, upperLimit: Int): Resource<List<ListStatistics>> {
+        return when(val response = firebaseDataSource.getStatisticFood(id, lowerLimit, upperLimit)) {
+            is Resource.Success -> Resource.Success(DataMapper.mapListStatisticToDomain(response.data))
+            is Resource.Error -> Resource.Error(response.exception)
+            is Resource.Loading -> Resource.Loading()
+        }
+    }
+
 
     override suspend fun setTotalCaloriesPerDay(id: String, date: String, total_calories: CaloryPerDay): Resource<Boolean> =
         firebaseDataSource.setTotalCaloriesPerDay(id, date, total_calories)

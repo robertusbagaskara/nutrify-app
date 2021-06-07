@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var calendar: Calendar
-    private lateinit var total_calories: CaloryPerDay
+    private lateinit var totalCaloriesPerDay: CaloryPerDay
     private var dateLocalFormat: String = ""
     private var dayLocalFormat: String = ""
     private var times: String = ""
@@ -143,7 +143,8 @@ class HomeFragment : Fragment() {
         val listStats = ListStatistics(
             foods = food,
             total_calories = Random.nextInt(100, 700),
-            time = calendar.get(Calendar.HOUR_OF_DAY).toString()
+            time = calendar.get(Calendar.HOUR_OF_DAY).toString(),
+            date = dateLocalFormat.toInt()
         )
         lifecycleScope.launch {
             viewModel.setStatistic(listStats)
@@ -182,11 +183,11 @@ class HomeFragment : Fragment() {
                             } else {
                                 binding.tvTotalRemaining.text = "0"
                             }
-                            total_calories =
+                            totalCaloriesPerDay =
                                 CaloryPerDay(budget, totalCalories, remaining, dayLocalFormat, dateLocalFormat.toInt())
                             binding.caloriesTotal.text = totalCalories.toString()
                             GlobalScope.launch(Dispatchers.Default) {
-                                statViewModel.setTotalCaloriesPerDay(total_calories)
+                                statViewModel.setTotalCaloriesPerDay(totalCaloriesPerDay)
                             }
 
                             val vl = LineDataSet(entries, "My calories")

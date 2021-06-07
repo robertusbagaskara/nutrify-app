@@ -25,7 +25,7 @@ class StatisticData {
         listStatistics: ListStatistics
     ): Resource<Boolean> =
         suspendCoroutine { cont ->
-            db.collection("statistics").document(id).collection(date).document(time)
+            db.collection("statistics").document(id).collection("date").document(date+time)
                 .set(listStatistics)
                 .addOnSuccessListener {
                     cont.resume(Resource.Success(true))
@@ -40,7 +40,8 @@ class StatisticData {
         date: String
     ): Resource<List<ListStatisticsResponse>> =
         suspendCoroutine { cont ->
-            db.collection("statistics").document(id).collection(date)
+            db.collection("statistics").document(id).collection("date")
+                .whereEqualTo("date", date.toInt())
                 .get()
                 .addOnSuccessListener {
                     Log.v("TEST", "TEST")
@@ -57,7 +58,53 @@ class StatisticData {
                         val listStats = ListStatisticsResponse(
                             foods = food,
                             total_calories = item.total_calories,
-                            time = item.time
+                            time = item.time,
+                            date = item.date
+                        )
+                        todayStats.add(listStats)
+                    }
+                    try {
+                        Log.v("listStats model", todayStats.toString())
+                        cont.resume(Resource.Success(todayStats) as Resource<List<ListStatisticsResponse>>)
+                    } catch (e: Exception) {
+                        cont.resume(Resource.Error(e.message))
+                    }
+                }
+                .addOnFailureListener {
+                    cont.resume(Resource.Error(it.message))
+                }
+        }
+
+
+
+    suspend fun getStatisticFood(
+        id: String,
+        lowerLimit: Int,
+        upperLimit: Int
+    ): Resource<List<ListStatisticsResponse>> =
+        suspendCoroutine { cont ->
+            db.collection("statistics").document(id).collection("date")
+                .whereGreaterThanOrEqualTo("date", lowerLimit)
+                .whereLessThanOrEqualTo("date", upperLimit)
+                .get()
+                .addOnSuccessListener {
+                    Log.v("TEST", "TEST")
+                    val todayStats = ArrayList<ListStatisticsResponse>()
+                    for (stat in it) {
+                        val item = stat.toObject<ListStatisticsResponse>()
+                        Log.d("FOOD item", item.toString())
+                        val food = ArrayList<FoodResponse>()
+                        item.foods.map { itemFood ->
+                            val foodItem = FoodResponse(
+                                name = itemFood.name
+                            )
+                            food.add(foodItem)
+                        }
+                        val listStats = ListStatisticsResponse(
+                            foods = food,
+                            total_calories = item.total_calories,
+                            time = item.time,
+                            date = item.date
                         )
                         todayStats.add(listStats)
                     }

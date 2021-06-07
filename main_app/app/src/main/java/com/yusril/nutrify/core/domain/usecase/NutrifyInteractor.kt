@@ -21,6 +21,9 @@ class NutrifyInteractor(private val iNutrifyRepository: INutrifyRepository) : Nu
     override suspend fun getStatisticToday(id: String, date: String): Resource<List<ListStatistics>> =
         iNutrifyRepository.getStatisticToday(id, date)
 
+    override suspend fun getStatisticFood(id: String, lowerLimit: Int, upperLimit: Int): Resource<List<ListStatistics>> =
+        iNutrifyRepository.getStatisticFood(id, lowerLimit, upperLimit)
+
     override suspend fun setTotalCaloriesPerDay(id: String, date: String, total_calories: CaloryPerDay): Resource<Boolean> =
         iNutrifyRepository.setTotalCaloriesPerDay(id, date, total_calories)
 

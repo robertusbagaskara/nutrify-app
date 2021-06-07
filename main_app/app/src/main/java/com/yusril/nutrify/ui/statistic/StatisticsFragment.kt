@@ -1,7 +1,6 @@
 package com.yusril.nutrify.ui.statistic
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -32,6 +31,7 @@ class StatisticsFragment : Fragment() {
     private var caloriesValue: ArrayList<Int> = ArrayList()
     private lateinit var dateLocalFormat: String
     private var entries: ArrayList<Entry> = ArrayList()
+    private var mapFood: MutableMap<String, Int> = mutableMapOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,7 +48,7 @@ class StatisticsFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
 
-        val dateLocal = LocalDateTime.now().minusDays(1.toLong())
+        val dateLocal = LocalDateTime.now()
         val formatter = DateTimeFormatter.BASIC_ISO_DATE
         val dayFormatter = DateTimeFormatter.ofPattern("EE", Locale.getDefault())
         dateLocalFormat = dateLocal.format(formatter)
@@ -90,7 +90,96 @@ class StatisticsFragment : Fragment() {
             }
         }
         monthYearPicker()
-        showConsumingChart()
+        getConsumingChart()
+
+    }
+
+    private fun getConsumingChart() {
+        val lowerDateLocal = LocalDateTime.now().minusDays(30.toLong())
+        val upperDateLocal = LocalDateTime.now().minusDays(0.toLong())
+        val formatter = DateTimeFormatter.BASIC_ISO_DATE
+        val lower = lowerDateLocal.format(formatter).toInt()
+        val upper = upperDateLocal.format(formatter).toInt()
+        viewModel.getStatisticFood(lower, upper).observe(viewLifecycleOwner, {
+            if (it != null) {
+                when (it) {
+                    is Resource.Loading -> {
+                        Log.d("getstats", "loading")
+                    }
+                    is Resource.Success -> {
+                        Log.d("resource com", it.toString())
+                        Log.d("FOOD COM", it.toString())
+                        mapFood.clear()
+                        it.data.map { data ->
+                            Log.d("FOOD DATA", data.foods.toString())
+                            data.foods.map { foodItem ->
+                                Log.d("FOOD ITEM", foodItem.name.toString())
+                                if (mapFood.containsKey(foodItem.name)) {
+                                    mapFood[foodItem.name] = 1 + mapFood.get(foodItem.name)!!
+                                } else {
+                                    mapFood[foodItem.name] = 1
+                                }
+                            }
+                            Log.d("getstats com", "ini didalam iterasi")
+
+                        }
+                        showConsumingChart(mapFood)
+                        Log.d("getstats com", "berhasil")
+                    }
+                    is Resource.Error -> {
+                        Log.d("getstats", "error")
+                    }
+                }
+            }
+        })
+
+
+    }
+
+    private fun showConsumingChart(mapFood: MutableMap<String, Int>) {
+        val mapFoodSorted = mapFood.toSortedMap()
+        Log.d("FOOD", mapFoodSorted.toString())
+
+        val xAxisValueFood = arrayListOf<String>()
+        val valueFood = arrayListOf<Int>()
+        mapFoodSorted.map {
+            xAxisValueFood.add(it.key)
+            valueFood.add(it.value)
+        }
+
+        val entries = ArrayList<BarEntry>()
+
+        if (mapFoodSorted.size > 7) {
+            for (a in 0 until 6) {
+                entries.add(BarEntry(a.toFloat(), valueFood[a].toFloat()))
+            }
+
+        } else {
+            for (a in 0 until xAxisValueFood.size) {
+                entries.add(BarEntry(a.toFloat(), valueFood[a].toFloat()))
+            }
+        }
+
+        val bc = BarDataSet(entries, "Consuming")
+        bc.apply {
+            color = R.color.green_500
+        }
+
+        binding.consumingChart.apply {
+            xAxis.valueFormatter = IndexAxisValueFormatter(xAxisValueFood)
+            data = BarData(bc)
+            setTouchEnabled(false)
+            setPinchZoom(false)
+            description.text = "food"
+            setNoDataText("No data yet!")
+            axisRight.isEnabled = false
+            xAxis.position = XAxis.XAxisPosition.BOTTOM
+            xAxis.setDrawGridLines(false)
+            axisLeft.setDrawGridLines(false)
+            axisRight.setDrawGridLines(false)
+            notifyDataSetChanged()
+            invalidate()
+        }
 
     }
 
@@ -149,39 +238,6 @@ class StatisticsFragment : Fragment() {
                 val month = monthFormat.format(calendar.time)
                 binding.btnMonthPicker.text = "$month $year"
             }
-        }
-    }
-
-    private fun showConsumingChart() {
-        val xAxisValueFood =
-            arrayOf("", "Banana", "Rice", "Meatball", "Coca Cola", "Chicken", "Beef", "Wagyu")
-        val entries = ArrayList<BarEntry>()
-
-        entries.add(BarEntry(1f, 23f))
-        entries.add(BarEntry(2f, 20f))
-        entries.add(BarEntry(3f, 18f))
-        entries.add(BarEntry(4f, 18f))
-        entries.add(BarEntry(5f, 15f))
-        entries.add(BarEntry(6f, 14f))
-        entries.add(BarEntry(7f, 11f))
-
-        val bc = BarDataSet(entries, "Consuming")
-        bc.apply {
-            color = R.color.green_500
-        }
-
-        binding.consumingChart.apply {
-            xAxis.valueFormatter = IndexAxisValueFormatter(xAxisValueFood)
-            data = BarData(bc)
-            setTouchEnabled(false)
-            setPinchZoom(false)
-            description.text = "food"
-            setNoDataText("No data yet!")
-            axisRight.isEnabled = false
-            xAxis.position = XAxis.XAxisPosition.BOTTOM
-            xAxis.setDrawGridLines(false)
-            axisLeft.setDrawGridLines(false)
-            axisRight.setDrawGridLines(false)
         }
     }
 
