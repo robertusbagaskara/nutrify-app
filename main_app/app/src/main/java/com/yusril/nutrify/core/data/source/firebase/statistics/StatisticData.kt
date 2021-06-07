@@ -3,6 +3,7 @@ package com.yusril.nutrify.core.data.source.firebase.statistics
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.toObject
 import com.yusril.nutrify.core.data.Resource
 import com.yusril.nutrify.core.data.source.firebase.statistics.response.CaloryPerDayResponse
@@ -80,7 +81,7 @@ class StatisticData {
     ): Resource<Boolean> =
         suspendCoroutine { cont ->
             db.collection("calories_per_day").document(id).collection("date").document(date)
-                .set(total_calories)
+                .set(total_calories, SetOptions.merge())
                 .addOnSuccessListener {
                     cont.resume(Resource.Success(true))
                 }
@@ -111,7 +112,9 @@ class StatisticData {
                         Log.d("TAG", "${stat.id} => ${stat.data}")
                         val item = stat.toObject<CaloryPerDayResponse>()
                         val itemCal = CaloryPerDayResponse(
+                            budget = item.budget,
                             total = item.total,
+                            remaining = item.remaining,
                             day_name = item.day_name,
                             date = item.date
                         )

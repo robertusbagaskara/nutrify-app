@@ -81,4 +81,7 @@
     <string name="week_button">%s - %s</string>
     <string name="total_calories">%d kkal</string>
     <string name="not_found">Data not found</string>
+    <string name="budget">Budget</string>
+    <string name="total_calories_budget">0</string>
+    <string name="remaining">Remaining</string>
 </resources>

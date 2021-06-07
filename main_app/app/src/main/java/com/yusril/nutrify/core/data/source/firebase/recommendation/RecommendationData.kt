@@ -16,6 +16,8 @@ class RecommendationData {
         suspendCoroutine { cont ->
             db.collection("foods")
                 .whereLessThanOrEqualTo("calories", minusCalories)
+                .orderBy("calories")
+                .limit(10)
                 .get()
                 .addOnSuccessListener {
                     val list = ArrayList<RecommendationListResponse>()

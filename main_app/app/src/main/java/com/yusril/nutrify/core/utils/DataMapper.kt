@@ -20,7 +20,9 @@ object DataMapper {
         val list = ArrayList<CaloryPerDay>()
         input.map {
             val item = CaloryPerDay(
+                budget = it.budget,
                 total = it.total,
+                remaining = it.remaining,
                 day_name = it.day_name,
                 date = it.date
             )
