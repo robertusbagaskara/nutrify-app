@@ -49,8 +49,8 @@ class FirebaseDataSource(
     ): Resource<Boolean> =
         statisticData.setTotalCaloriesPerDay(id, date, total_calories)
 
-    suspend fun getTotalCaloriesPerDay(id: String, date: String, lowerLimit: Int, upperLimit: Int) : Resource<List<CaloryPerDayResponse>> {
-        return statisticData.getTotalCaloriesPerDay(id, date, lowerLimit, upperLimit)
+    suspend fun getTotalCaloriesPerDay(id: String, lowerLimit: Int, upperLimit: Int) : Resource<List<CaloryPerDayResponse>> {
+        return statisticData.getTotalCaloriesPerDay(id, lowerLimit, upperLimit)
     }
 
     suspend fun getRecommendation(minusCalories: Int): Resource<List<RecommendationListResponse>> {

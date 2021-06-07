@@ -50,9 +50,7 @@ class StatisticsFragment : Fragment() {
 
         val dateLocal = LocalDateTime.now()
         val formatter = DateTimeFormatter.BASIC_ISO_DATE
-        val dayFormatter = DateTimeFormatter.ofPattern("EE", Locale.getDefault())
         dateLocalFormat = dateLocal.format(formatter)
-        val dayLocalFormat = dateLocal.format(dayFormatter)
 
         viewModel.id = currentUser?.uid.toString()
         viewModel.date = dateLocalFormat
@@ -201,7 +199,7 @@ class StatisticsFragment : Fragment() {
                 binding.btnWeek3.setBackgroundColor(requireContext().getColor(R.color.green_500))
                 binding.btnWeek3.setTextColor(requireContext().getColor(R.color.white))
             }
-            else -> {
+            b3 -> {
                 binding.btnWeek4.setBackgroundColor(requireContext().getColor(R.color.green_500))
                 binding.btnWeek4.setTextColor(requireContext().getColor(R.color.white))
             }

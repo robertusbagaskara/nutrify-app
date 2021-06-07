@@ -196,7 +196,7 @@ class RegisterActivity : AppCompatActivity(),
         val calendar = Calendar.getInstance()
         calendar.set(year, month, dayOfMonth)
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        binding.inputDate.doOnTextChanged { text, start, before, count ->
+        binding.inputDate.doOnTextChanged { _, _, _, _ ->
             inputDateVal.value = dateFormat.format(calendar.time)
         }
         binding.inputDate.setText(dateFormat.format(calendar.time))

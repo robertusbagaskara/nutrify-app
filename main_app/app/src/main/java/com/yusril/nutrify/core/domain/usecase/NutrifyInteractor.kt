@@ -27,8 +27,8 @@ class NutrifyInteractor(private val iNutrifyRepository: INutrifyRepository) : Nu
     override suspend fun setTotalCaloriesPerDay(id: String, date: String, total_calories: CaloryPerDay): Resource<Boolean> =
         iNutrifyRepository.setTotalCaloriesPerDay(id, date, total_calories)
 
-    override suspend fun getTotalCaloriesPerDay(id: String, date: String, lowerLimit: Int, upperLimit: Int): Resource<List<CaloryPerDay>> =
-        iNutrifyRepository.getTotalCaloriesPerDay(id, date, lowerLimit, upperLimit)
+    override suspend fun getTotalCaloriesPerDay(id: String, lowerLimit: Int, upperLimit: Int): Resource<List<CaloryPerDay>> =
+        iNutrifyRepository.getTotalCaloriesPerDay(id, lowerLimit, upperLimit)
 
     override suspend fun getRecommendation(minusCalories: Int): Resource<List<RecommendationList>> =
         iNutrifyRepository.getRecommendation(minusCalories)

@@ -178,8 +178,14 @@ class HomeFragment : Fragment() {
                             remaining = budget - totalCalories
                             if (remaining > 0) {
                                 binding.tvTotalRemaining.text = remaining.toString()
+                                binding.alertCardConstraint.setBackgroundResource(R.drawable.shape_rectangle_bg_recommendation)
                             } else {
                                 binding.tvTotalRemaining.text = "0"
+                                binding.alertCardConstraint.setBackgroundResource(R.drawable.shape_rectangle_bg_recommendation_red)
+                                binding.tvTotalBudget.setTextColor(resources.getColor(R.color.danger))
+                                binding.tvCaloryBudget.setTextColor(resources.getColor(R.color.danger))
+                                binding.tvTotalRemaining.setTextColor(resources.getColor(R.color.danger))
+                                binding.tvCaloryRemaining.setTextColor(resources.getColor(R.color.danger))
                             }
                             totalCaloriesPerDay =
                                 CaloryPerDay(budget, totalCalories, remaining, dayLocalFormat, dateLocalFormat.toInt())

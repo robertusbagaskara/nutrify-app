@@ -23,7 +23,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
     private lateinit var binding: ActivityEditProfileBinding
     private lateinit var auth: FirebaseAuth
     private var uid: String = ""
-    val user: User = User()
+    var user: User = User()
     private val viewModel: ProfileViewModel by viewModel()
 
     companion object {
@@ -43,7 +43,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
 
         binding.btnInputBirth.setOnClickListener(this)
         binding.btnSave.setOnClickListener {
-            setUserProfile(user)
+            setUserProfile()
         }
 
 
@@ -75,9 +75,8 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener,
         Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
     }
 
-    private fun setUserProfile(inputUser: User) {
+    private fun setUserProfile() {
         lifecycleScope.launch {
-            var user = inputUser
             user = User(
                 binding.tvBirthDate.text.toString(),
                 binding.inputHeight.text.toString().toInt(),

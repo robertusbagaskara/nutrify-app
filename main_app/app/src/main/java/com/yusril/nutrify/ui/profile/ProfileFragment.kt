@@ -46,6 +46,11 @@ class ProfileFragment : Fragment() {
                     is Resource.Loading -> showLoading(true)
                     is Resource.Success -> {
                         showLoading(false)
+                        if (it.data.gender == "Male") {
+                            binding.tvGender.setImageResource(R.drawable.ic_male)
+                        } else {
+                            binding.tvGender.setImageResource(R.drawable.ic_female)
+                        }
                         populateProfile(it)
                     }
                     is Resource.Error -> {

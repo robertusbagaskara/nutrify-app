@@ -25,7 +25,7 @@ class StatisticsViewModel(private val nutrifyUseCase: NutrifyUseCase) : ViewMode
         total = _total
         _total.value = Resource.Loading()
         viewModelScope.launch {
-            _total.postValue(nutrifyUseCase.getTotalCaloriesPerDay(id, date, lowerLimit, upperLimit))
+            _total.postValue(nutrifyUseCase.getTotalCaloriesPerDay(id, lowerLimit, upperLimit))
         }
         return total
     }

@@ -141,7 +141,6 @@ class StatisticData {
 
     suspend fun getTotalCaloriesPerDay(
         id: String,
-        dateInput: String,
         lowerLimit: Int,
         upperLimit: Int
     ): Resource<List<CaloryPerDayResponse>> =
