@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'com.google.gms.google-services'
+    id 'de.undercouch.download'
 }
 
 android {
@@ -10,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.yusril.nutrify"
-        minSdkVersion 21
+        minSdkVersion 27
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -36,6 +37,11 @@ android {
         viewBinding true
     }
 }
+
+
+// import DownloadModels task
+project.ext.ASSET_DIR = projectDir.toString() + '/src/main/assets'
+project.ext.TMP_DIR = project.buildDir.toString() + '/downloads'
 
 repositories {
     maven { url 'https://jitpack.io' }
@@ -67,8 +73,17 @@ dependencies {
     //firebase
     implementation platform('com.google.firebase:firebase-bom:28.0.1')
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
 
     //corountine flow
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
+
+    //koin
+    implementation "io.insert-koin:koin-core:2.1.6"
+    implementation "io.insert-koin:koin-android:2.1.6"
+    implementation "io.insert-koin:koin-android-viewmodel:2.1.6"
+
+    implementation 'org.tensorflow:tensorflow-lite:2.2.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.2.0'
 }

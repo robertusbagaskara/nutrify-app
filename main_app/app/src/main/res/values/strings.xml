@@ -9,6 +9,7 @@
     <string name="title_scan">Scan</string>
 
     <string name="username">Hello Bambang,</string>
+    <string name="welcome_greeting">Hello %s,</string>
     <string name="calories_today">Your calories today</string>
     <string name="calories_kkal">kkal</string>
     <string name="calories_total">1965</string>
@@ -26,7 +27,7 @@
     <string name="sign_up_with_gmail">Sign up with gmail account</string>
     <string name="already_have_an_account">Already have an account? Sign in</string>
 
-    <string name="birth_date">birth date</string>
+    <string name="birth_date">Birth date</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="weight">%d kg</string>
     <string name="height">%d cm</string>
@@ -70,4 +71,19 @@
     <string name="name_not_valid">name cannot be empty</string>
     <string name="confirm_sign_out">Are you sure to sign out?</string>
     <string name="cancel">Cancel</string>
+    <string name="height_input">Height (cm)</string>
+    <string name="weight_input">Weight (kg)</string>
+    <string name="field_not_valid">field cannot empty</string>
+    <string name="gender_not_valid">Choose your gender</string>
+    <string name="date_not_valid">Choose your birth date</string>
+    <string name="user_update_success">Update success</string>
+    <string name="health_tips_title">Health tips</string>
+    <string name="week_button">%s - %s</string>
+    <string name="total_calories">%d kkal</string>
+    <string name="not_found">Data not found</string>
+    <string name="budget">Budget</string>
+    <string name="total_calories_budget">0</string>
+    <string name="remaining">Remaining</string>
+
+    <string name="tfe_od_camera_error" translation_description="Error regarding camera support[CHAR_LIMIT=40]">This device doesn\'t support Camera2 API.</string>
 </resources>

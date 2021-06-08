@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
@@ -14,22 +15,34 @@ import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.yusril.nutrify.R
+import com.yusril.nutrify.core.domain.model.User
 import com.yusril.nutrify.databinding.ActivityRegisterBinding
 import com.yusril.nutrify.ui.auth.login.LoginActivity
+import com.yusril.nutrify.ui.profile.ProfileViewModel
+import com.yusril.nutrify.ui.profile.edtprofile.DatePickerFragment
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
+import org.koin.android.viewmodel.ext.android.viewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity(),
+    DatePickerFragment.DialogDateListener {
 
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
+    private val viewModel: ProfileViewModel by viewModel()
 
     private val inValidButtonColor = "#E9E9E9"
     private val validButtonColor = "#00796B"
 
     private val inputNameVal = MutableStateFlow("")
+    private val inputHeightVal = MutableStateFlow("")
+    private val inputWeightVal = MutableStateFlow("")
+    private val inputGenderVal = MutableStateFlow("")
+    private val inputDateVal = MutableStateFlow("")
     private val inputEmailVal = MutableStateFlow("")
     private val inputPasswordVal = MutableStateFlow("")
     private val inputConfirmPasswordVal = MutableStateFlow("")
@@ -40,6 +53,16 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
+        auth = FirebaseAuth.getInstance()
+
+        val genderList: Array<String> = resources.getStringArray(R.array.gender)
+        val adapter = ArrayAdapter(this, R.layout.drop_down_item, genderList)
+        binding.inputGender.setAdapter(adapter)
+
+        binding.dateForm.setStartIconOnClickListener {
+            val datePickerFragment = DatePickerFragment()
+            datePickerFragment.show(supportFragmentManager, DATE_PICKER_TAG)
+        }
 
         val formIsValid = combine(
             inputNameVal, inputEmailVal, inputPasswordVal, inputConfirmPasswordVal
@@ -62,17 +85,22 @@ class RegisterActivity : AppCompatActivity() {
                 binding.inputConfirmPassword.error = getString(R.string.password_not_same)
             }
 
-            Log.d(
-                "isValid",
-                isValidName.toString() + isValidEmail.toString() + isValidPassword.toString() + isValidConfirmPassword.toString()
-            )
-
             isValidName && isValidEmail && isValidPassword && isValidConfirmPassword
         }
+
 
         with(binding) {
             inputName.doOnTextChanged { text, _, _, _ ->
                 inputNameVal.value = text.toString()
+            }
+            inputHeight.doOnTextChanged { text, _, _, _ ->
+                inputHeightVal.value = text.toString()
+            }
+            inputWeight.doOnTextChanged { text, _, _, _ ->
+                inputWeightVal.value = text.toString()
+            }
+            inputGender.doOnTextChanged { text, _, _, _ ->
+                inputGenderVal.value = text.toString()
             }
             inputEmail.doOnTextChanged { text, _, _, _ ->
                 inputEmailVal.value = text.toString()
@@ -85,22 +113,6 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-        lifecycleScope.launch {
-            formIsValid.collect {
-                binding.btnSignUp.apply {
-                    backgroundTintList = ColorStateList.valueOf(
-                        Color.parseColor(
-                            if (it) validButtonColor else inValidButtonColor
-                        )
-                    )
-                    isClickable = it
-                }
-            }
-        }
-
-
-        auth = FirebaseAuth.getInstance()
-
         binding.btnSignUp.setOnClickListener {
             btnLoading(true)
             register()
@@ -110,14 +122,29 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+
+        lifecycleScope.launch {
+            formIsValid.collect {
+                    Log.d("it", it.toString())
+                    binding.btnSignUp.apply {
+                        backgroundTintList = ColorStateList.valueOf(
+                            Color.parseColor(
+                                if (it) validButtonColor else inValidButtonColor
+                            )
+                        )
+                        isClickable = it
+                    }
+            }
+        }
+
     }
 
     private fun btnLoading(isLoading: Boolean) {
         if (isLoading) {
-            binding.btnSignIn.text = ""
+            binding.btnSignUp.text = ""
             binding.progressBar.visibility = View.VISIBLE
         } else {
-            binding.btnSignIn.text = getString(R.string.sign_in)
+            binding.btnSignUp.text = getString(R.string.sign_up)
             binding.progressBar.visibility = View.GONE
         }
     }
@@ -151,13 +178,33 @@ class RegisterActivity : AppCompatActivity() {
         val profileUpdates = userProfileChangeRequest {
             displayName = name
         }
-
         user!!.updateProfile(profileUpdates)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d("TAG", "User profile updated.")
-                }
-            }
+
+        val inputUser = User(
+            binding.inputDate.text.toString(),
+            binding.inputHeight.text.toString().toInt(),
+            binding.inputWeight.text.toString().toInt(),
+            binding.inputGender.text.toString()
+        )
+        viewModel.id = user.uid
+        lifecycleScope.launch {
+            viewModel.setProfile(inputUser)
+        }
     }
+
+    override fun onDialogDateSet(tag: String?, year: Int, month: Int, dayOfMonth: Int) {
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, dayOfMonth)
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        binding.inputDate.doOnTextChanged { _, _, _, _ ->
+            inputDateVal.value = dateFormat.format(calendar.time)
+        }
+        binding.inputDate.setText(dateFormat.format(calendar.time))
+    }
+
+    companion object {
+        private const val DATE_PICKER_TAG = "DatePicker"
+    }
+
 
 }

@@ -38,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
+        auth = FirebaseAuth.getInstance()
 
         val formIsValid = combine(
             inputEmailVal, inputPasswordVal
@@ -65,21 +66,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        lifecycleScope.launch {
-            formIsValid.collect {
-                binding.btnSignIn.apply {
-                    backgroundTintList = ColorStateList.valueOf(
-                        Color.parseColor(
-                            if (it) validButtonColor else inValidButtonColor
-                        )
-                    )
-                    isClickable = it
-                }
-            }
-        }
-
-        auth = FirebaseAuth.getInstance()
-
         binding.btnSignUp.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
@@ -89,6 +75,21 @@ class LoginActivity : AppCompatActivity() {
             btnLoading(true)
             login()
         }
+
+        lifecycleScope.launch {
+            formIsValid.collect {
+                binding.btnSignIn.apply {
+                    isClickable = it
+                    backgroundTintList = ColorStateList.valueOf(
+                        Color.parseColor(
+                            if (it) validButtonColor else inValidButtonColor
+                        )
+                    )
+                    Log.d("button clickable prtama", it.toString())
+                }
+            }
+        }
+
     }
 
     private fun btnLoading(isLoading: Boolean) {
@@ -129,6 +130,7 @@ class LoginActivity : AppCompatActivity() {
         if (currentUser != null) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

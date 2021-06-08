@@ -13,12 +13,13 @@
             android:id="@+id/btn_month_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="@color/grey"
-            android:textColor="@color/material_on_background_emphasis_medium"
             android:text="@string/month_year"
+            android:textColor="@color/material_on_background_emphasis_medium"
             android:textStyle="bold"
+            android:visibility="gone"
             app:icon="@drawable/ic_calender"
             app:iconGravity="end"
             app:iconTint="@color/material_on_background_emphasis_medium" />
@@ -28,8 +29,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:scrollbars="none"
-            android:scrollbarAlwaysDrawHorizontalTrack="false">
+            android:layout_marginTop="16dp"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -49,9 +51,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/grey"
                     android:text="@string/week1"
                     android:textAllCaps="false"
-                    android:backgroundTint="@color/grey"
                     android:textColor="@color/material_on_background_emphasis_medium" />
 
                 <Button
@@ -59,9 +61,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/grey"
                     android:text="@string/week1"
                     android:textAllCaps="false"
-                    android:backgroundTint="@color/grey"
                     android:textColor="@color/material_on_background_emphasis_medium" />
 
                 <Button
@@ -69,9 +71,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/grey"
                     android:text="@string/week1"
                     android:textAllCaps="false"
-                    android:backgroundTint="@color/grey"
                     android:textColor="@color/material_on_background_emphasis_medium" />
 
 
@@ -86,7 +88,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/calories_per_day"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
 
         <androidx.cardview.widget.CardView

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,7 +28,7 @@
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/user"
+            android:src="@drawable/user_photo_null"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="@+id/hero_section" />
 
@@ -87,6 +86,82 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/calories_kkal" />
 
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/alertCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintTop_toBottomOf="@id/hero_section">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/alertCardConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_rectangle_bg_recommendation"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/tv_calory_budget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/budget"
+                    android:textColor="@color/green_700"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/tv_calory_remaining"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tv_total_budget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/total_calories_budget"
+                    android:textColor="@color/green_700"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_calory_budget"
+                    app:layout_constraintRight_toRightOf="@id/tv_calory_budget"
+                    app:layout_constraintTop_toBottomOf="@id/tv_calory_budget"/>
+
+
+
+                <TextView
+                    android:id="@+id/tv_calory_remaining"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/remaining"
+                    android:textColor="@color/green_700"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toRightOf="@id/tv_calory_budget"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tv_total_remaining"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/total_calories_budget"
+                    android:textColor="@color/green_700"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_calory_remaining"
+                    app:layout_constraintRight_toRightOf="@id/tv_calory_remaining"
+                    app:layout_constraintTop_toBottomOf="@id/tv_calory_remaining"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
         <TextView
             android:id="@+id/today_statistic"
             android:layout_width="wrap_content"
@@ -99,7 +174,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hero_section" />
+            app:layout_constraintTop_toBottomOf="@+id/alertCard" />
 
 
         <androidx.cardview.widget.CardView
@@ -128,7 +203,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="@string/today_statistic"
+            android:text="@string/health_tips_title"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -170,6 +245,15 @@
                 android:textColor="@color/white" />
 
         </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btn_generate_dummy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:text="tambah scan"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/health_tips_card" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
