@@ -1,3 +1,0 @@
-please commit the REST-API or other cloud configuration in here
-
-(delete this file if not needed)
