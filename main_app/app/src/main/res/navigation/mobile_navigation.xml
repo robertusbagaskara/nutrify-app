@@ -17,19 +17,11 @@
         android:label="@string/title_statistics"
         tools:layout="@layout/fragment_statistics" />
 
-<<<<<<< HEAD
     <activity
         android:id="@+id/navigation_scan"
         android:name="com.yusril.nutrify.ui.scan.ScanActivity"
         android:label="@string/title_scan"
         tools:layout="@layout/activity_scan" />
-=======
-<!--    <activity-->
-<!--        android:id="@+id/navigation_scan"-->
-<!--        android:name="com.yusril.nutrify.ui.scan.ScanActivity"-->
-<!--        android:label="@string/title_scan"-->
-<!--        tools:layout="@layout/activity_scan" />-->
->>>>>>> 14159c234cee8116553fee06329d7378eb62fe8f
 
     <fragment
         android:id="@+id/navigation_recommendation"

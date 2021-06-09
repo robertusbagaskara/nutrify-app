@@ -83,10 +83,7 @@ dependencies {
     implementation "io.insert-koin:koin-core:2.1.6"
     implementation "io.insert-koin:koin-android:2.1.6"
     implementation "io.insert-koin:koin-android-viewmodel:2.1.6"
-<<<<<<< HEAD
 
     implementation 'org.tensorflow:tensorflow-lite:2.2.0'
     implementation 'org.tensorflow:tensorflow-lite-gpu:2.2.0'
-=======
->>>>>>> 14159c234cee8116553fee06329d7378eb62fe8f
 }
