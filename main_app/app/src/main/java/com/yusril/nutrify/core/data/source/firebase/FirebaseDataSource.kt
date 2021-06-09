@@ -56,4 +56,8 @@ class FirebaseDataSource(
     suspend fun getRecommendation(minusCalories: Int): Resource<List<RecommendationListResponse>> {
         return recommendationData.getRecommendation(minusCalories)
     }
+
+    suspend fun getFoodDataFromScan(foods: List<String>): Resource<List<RecommendationListResponse>> {
+        return recommendationData.getFoodDataFromScan(foods)
+    }
 }

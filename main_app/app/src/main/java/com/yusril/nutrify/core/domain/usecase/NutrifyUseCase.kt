@@ -31,4 +31,6 @@ interface NutrifyUseCase {
     suspend fun getTotalCaloriesPerDay(id: String, lowerLimit: Int, upperLimit: Int): Resource<List<CaloryPerDay>>
 
     suspend fun getRecommendation(minusCalories: Int): Resource<List<RecommendationList>>
+
+    suspend fun getFoodDataFromScan(foods: List<String>): Resource<List<RecommendationList>>
 }

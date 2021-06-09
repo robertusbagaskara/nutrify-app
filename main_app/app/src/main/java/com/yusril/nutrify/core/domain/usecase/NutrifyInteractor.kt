@@ -33,5 +33,8 @@ class NutrifyInteractor(private val iNutrifyRepository: INutrifyRepository) : Nu
     override suspend fun getRecommendation(minusCalories: Int): Resource<List<RecommendationList>> =
         iNutrifyRepository.getRecommendation(minusCalories)
 
+    override suspend fun getFoodDataFromScan(foods: List<String>): Resource<List<RecommendationList>> =
+        iNutrifyRepository.getFoodDataFromScan(foods)
+
 
 }

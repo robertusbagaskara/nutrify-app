@@ -24,4 +24,6 @@ interface INutrifyRepository {
 
     suspend fun getRecommendation(minusCalories: Int): Resource<List<RecommendationList>>
 
+    suspend fun getFoodDataFromScan(foods: List<String>): Resource<List<RecommendationList>>
+
 }

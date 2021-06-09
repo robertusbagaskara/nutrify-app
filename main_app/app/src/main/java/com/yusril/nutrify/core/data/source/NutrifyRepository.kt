@@ -62,5 +62,13 @@ class NutrifyRepository(private val firebaseDataSource: FirebaseDataSource) : IN
         }
     }
 
+    override suspend fun getFoodDataFromScan(foods: List<String>): Resource<List<RecommendationList>> {
+        return when(val response = firebaseDataSource.getFoodDataFromScan(foods)) {
+            is Resource.Success -> Resource.Success(DataMapper.mapRecommendationToDomain(response.data))
+            is Resource.Error -> Resource.Error(response.exception)
+            is Resource.Loading -> Resource.Loading()
+        }
+    }
+
 
 }

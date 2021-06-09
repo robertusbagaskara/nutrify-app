@@ -46,6 +46,7 @@ import com.yusril.nutrify.ui.scan.tflite.YoloV4Classifier;
 import com.yusril.nutrify.ui.scan.tracking.MultiBoxTracker;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -53,7 +54,7 @@ import java.util.List;
  * An activity that uses a TensorFlowMultiBoxDetector and ObjectTracker to detect and then track
  * objects.
  */
-public class DetectorActivity extends com.yusril.nutrify.ui.scan.CameraActivity implements OnImageAvailableListener {
+public class DetectorActivity extends CameraActivity implements OnImageAvailableListener {
     private static final Logger LOGGER = new Logger();
 
     private static final int TF_OD_API_INPUT_SIZE = 416;
@@ -89,6 +90,8 @@ public class DetectorActivity extends com.yusril.nutrify.ui.scan.CameraActivity 
 
     private BorderedText borderedText;
     private String labelResult;
+    private int previewWidth;
+    private int previewHeight;
 
     @Override
     public void onPreviewSizeChosen(final Size size, final int rotation) {
@@ -213,6 +216,7 @@ public class DetectorActivity extends com.yusril.nutrify.ui.scan.CameraActivity 
                         final List<Classifier.Recognition> mappedRecognitions =
                                 new LinkedList<Classifier.Recognition>();
 
+                        final List<String> listFoodLabel = new ArrayList<>();
                         for (final Classifier.Recognition result : results) {
                             final RectF location = result.getLocation();
                             if (location != null && result.getConfidence() >= minimumConfidence) {
@@ -224,6 +228,8 @@ public class DetectorActivity extends com.yusril.nutrify.ui.scan.CameraActivity 
 
                                 result.setLocation(location);
                                 mappedRecognitions.add(result);
+
+                                listFoodLabel.add(result.getTitle());
 
                             }
                         }
@@ -240,7 +246,7 @@ public class DetectorActivity extends com.yusril.nutrify.ui.scan.CameraActivity 
 //                                        showFrameInfo(previewWidth + "x" + previewHeight);
 //                                        showCropInfo(cropCopyBitmap.getWidth() + "x" + cropCopyBitmap.getHeight());
 //                                        showInference(lastProcessingTimeMs + "ms");
-                                        showResult(labelResult);
+                                        showResult(listFoodLabel);
                                     }
                                 });
                     }

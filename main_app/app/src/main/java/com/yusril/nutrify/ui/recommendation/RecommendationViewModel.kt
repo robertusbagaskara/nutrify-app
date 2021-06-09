@@ -25,4 +25,14 @@ class RecommendationViewModel(private val nutrifyUseCase: NutrifyUseCase) : View
         }
         return list
     }
+
+
+    fun getFoodDataFromScan(foods: List<String>): LiveData<Resource<List<RecommendationList>>> {
+        list = _list
+        _list.value = Resource.Loading()
+        viewModelScope.launch {
+            _list.postValue(nutrifyUseCase.getFoodDataFromScan(foods))
+        }
+        return list
+    }
 }
