@@ -105,9 +105,9 @@ class HomeFragment : Fragment() {
         })
         showChart()
 
-        binding.btnGenerateDummy.setOnClickListener {
-            setStatistic()
-        }
+//        binding.btnGenerateDummy.setOnClickListener {
+//            setStatistic()
+//        }
     }
 
     private fun loadingAlert(data: User) {
@@ -129,25 +129,25 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setStatistic() {
-        val foods = arrayOf("nasi", "ikan", "ayam")
-        val food = ArrayList<Food>()
-        foods.map {
-            val item = Food(
-                name = it
-            )
-            food.add(item)
-        }
-        val listStats = ListStatistics(
-            foods = food,
-            total_calories = Random.nextInt(100, 700),
-            time = calendar.get(Calendar.HOUR_OF_DAY).toString(),
-            date = dateLocalFormat.toInt()
-        )
-        lifecycleScope.launch {
-            viewModel.setStatistic(listStats)
-        }
-    }
+//    private fun setStatistic() {
+//        val foods = arrayOf("nasi", "ikan", "ayam")
+//        val food = ArrayList<Food>()
+//        foods.map {
+//            val item = Food(
+//                name = it
+//            )
+//            food.add(item)
+//        }
+//        val listStats = ListStatistics(
+//            foods = food,
+//            total_calories = Random.nextInt(100, 700),
+//            time = calendar.get(Calendar.HOUR_OF_DAY).toString(),
+//            date = dateLocalFormat.toInt()
+//        )
+//        lifecycleScope.launch {
+//            viewModel.setStatistic(listStats)
+//        }
+//    }
 
     private fun showChart() {
         runBlocking {

@@ -53,6 +53,8 @@ class RegisterActivity : AppCompatActivity(),
         setContentView(binding.root)
 
         supportActionBar?.hide()
+
+        binding.top.continueText.text = "Sign up to continue"
         auth = FirebaseAuth.getInstance()
 
         val genderList: Array<String> = resources.getStringArray(R.array.gender)

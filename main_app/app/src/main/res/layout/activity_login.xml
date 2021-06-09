@@ -101,6 +101,7 @@
             android:fontFamily="@font/poppins"
             android:text="@string/or"
             android:textSize="20sp"
+            android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_error" />
@@ -114,6 +115,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins"
             android:text="@string/sign_in_with_gmail"
+            android:visibility="gone"
             app:icon="@drawable/ic_google"
             app:iconGravity="textStart"
             app:iconSize="24dp"
