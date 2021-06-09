@@ -45,6 +45,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 abstract class CameraActivity : AppCompatActivity(), OnImageAvailableListener,
@@ -53,6 +54,8 @@ abstract class CameraActivity : AppCompatActivity(), OnImageAvailableListener,
     private val viewModel: HomeViewModel by viewModel()
     private val viewModelRec: RecommendationViewModel by viewModel()
 
+    private var totalCalories: Int = 0
+    private var listFood: ArrayList<Food> = arrayListOf()
 
     public var previewWidth = 0
     public var previewHeight = 0
@@ -465,59 +468,53 @@ abstract class CameraActivity : AppCompatActivity(), OnImageAvailableListener,
         val listSeparated = java.lang.String.join(", ", labelInfo)
         tvResult?.text = listSeparated
 
-        viewModelRec.getFoodDataFromScan(labelInfo).observe(this, {
-            if (it != null) {
-                when (it) {
-                    is Resource.Loading -> {
-                        Log.d("getstats", "loading")
-                    }
-                    is Resource.Success -> {
-                        Log.d("resource", it.toString())
-                        var totalCalories = 0
-                        it.data.map { item ->
-                            totalCalories += item.calories
-                        }
-
-                        val listFood = ArrayList<Food>()
-                        var item: Food
-                        for (i in 0 until labelInfo.size-1) {
-                            item = Food(
-                                labelInfo[i]
-                            )
-                            listFood.add(item)
-                        }
-
-                        val calendar = Calendar.getInstance()
-                        val dateLocal = LocalDateTime.now()
-                        val formatter = DateTimeFormatter.BASIC_ISO_DATE
-                        val dateLocalFormat = dateLocal.format(formatter)
-                        val listStats = ListStatistics(
-                            foods = listFood,
-                            total_calories = totalCalories,
-                            time = calendar.get(Calendar.HOUR_OF_DAY).toString(),
-                            date = dateLocalFormat.toInt()
-                        )
-
-                        GlobalScope.launch(Dispatchers.Default) {
-                            viewModel.setStatistic(listStats)
-                        }
 
 
-                        Log.d("getstats", "berhasil")
-                    }
-                    is Resource.Error -> {
-                        Log.d("getstats", "error")
-                    }
-                }
-            }
-        })
+
+
+//        viewModelRec.getFoodDataFromScan(labelInfo).observe(this, {
+//            if (it != null) {
+//                when (it) {
+//                    is Resource.Loading -> {
+//                        Log.d("getstats", "loading")
+//                    }
+//                    is Resource.Success -> {
+//                        Log.d("resource", it.toString())
+//                        var totalCalories = 0
+//                        it.data.map { item ->
+//                            totalCalories += item.calories
+//                        }
+//
+//                        val listFood = ArrayList<Food>()
+//                        var item: Food
+//                        for (i in 0 until labelInfo.size-1) {
+//                            item = Food(
+//                                labelInfo[i]
+//                            )
+//                            listFood.add(item)
+//                        }
+//
+//                        val calendar = Calendar.getInstance()
+//                        val dateLocal = LocalDateTime.now()
+//                        val formatter = DateTimeFormatter.BASIC_ISO_DATE
+//                        val dateLocalFormat = dateLocal.format(formatter)
+//
+//
+//                        Log.d("getstats", "berhasil")
+//                    }
+//                    is Resource.Error -> {
+//                        Log.d("getstats", "error")
+//                    }
+//                }
+//            }
+//        })
 
         if (labelInfo != null) {
             btnSave?.isClickable = true
             btnSave?.backgroundTintList =
                 ColorStateList.valueOf(Color.parseColor(validButtonColor))
             btnSave?.setOnClickListener {
-                viewModelRec.getFoodDataFromScan(labelInfo).observe(this, {
+                viewModelRec.getRecommendation(5000).observe(this, {
                     if (it != null) {
                         when (it) {
                             is Resource.Loading -> {
@@ -525,25 +522,33 @@ abstract class CameraActivity : AppCompatActivity(), OnImageAvailableListener,
                                 btnSave?.text = "Loading"
                             }
                             is Resource.Success -> {
-                                Log.d("resource", it.toString())
-                                var totalCalories = 0
-                                it.data.map { item ->
-                                    totalCalories += item.calories
+                                Log.d("resource camera", it.data.toString())
+                                listFood.clear()
+                                for (i in 0 until labelInfo.size) {
+                                    it.data.map { item ->
+                                        Log.d("TAG LABEL BRO", labelInfo.toString())
+                                        Log.d("TAG BROO", (labelInfo[i] == item.name).toString())
+                                        if (labelInfo[i] == item.name) {
+                                            totalCalories += item.calories
+                                            val item1 = Food(
+                                                name = labelInfo[i]
+                                            )
+                                            listFood.add(item1)
+                                        }
+                                    }
                                 }
-
-                                val listFood = ArrayList<Food>()
-                                var item: Food
                                 for (i in 0 until labelInfo.size-1) {
-                                    item = Food(
-                                        labelInfo[i]
-                                    )
-                                    listFood.add(item)
                                 }
+                                Log.d("TAG BRO", listFood.toString())
+                                val dateLocal1 = LocalDateTime.now()
+                                val formatter1 = DateTimeFormatter.BASIC_ISO_DATE
+                                val dateLocalFormat1 = dateLocal1.format(formatter1)
+
                                 val listStats = ListStatistics(
                                     foods = listFood,
                                     total_calories = totalCalories,
                                     time = calendar.get(Calendar.HOUR_OF_DAY).toString(),
-                                    date = dateLocalFormat.toInt()
+                                    date = dateLocalFormat1.toInt()
                                 )
 
                                 GlobalScope.launch(Dispatchers.Default) {
@@ -571,6 +576,9 @@ abstract class CameraActivity : AppCompatActivity(), OnImageAvailableListener,
             btnSave?.backgroundTintList =
                 ColorStateList.valueOf(Color.parseColor(inValidButtonColor))
         }
+
+
+
     }
 
     //  protected void showCropInfo(String cropInfo) {
