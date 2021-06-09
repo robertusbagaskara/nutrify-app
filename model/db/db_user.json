@@ -1,0 +1,10 @@
+[
+{"type":"header","version":"5.0.3","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"db_user"},
+{"type":"table","name":"data_user","database":"db_user","data":
+[
+{"USER_ID":"UI_1","NAME":"USER","BIRTH_DATE":"1991-01-01","WEIGHT":"91","GENDER":"MALE","EMAIL":"USER@MAIL.COM","PASSWORD":"1USER"},
+{"USER_ID":"UI_2","NAME":"USER","BIRTH_DATE":"1992-02-02","WEIGHT":"92","GENDER":"FEMALE","EMAIL":"USER@MAIL.COM","PASSWORD":"2USER"}
+]
+}
+]

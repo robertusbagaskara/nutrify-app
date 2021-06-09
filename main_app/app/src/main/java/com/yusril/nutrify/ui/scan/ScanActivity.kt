@@ -25,7 +25,7 @@ import java.util.*
 class ScanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityScanBinding
 
-        var MINIMUM_CONFIDENCE_TF_OD_API = 0.5f
+    var MINIMUM_CONFIDENCE_TF_OD_API = 0.5f
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
